@@ -1,22 +1,26 @@
 # COLM 2026 · 非官方互動整理頁
 
-把 [Conference on Language Modeling (COLM) 2026](https://colmweb.org/) 官網的內容,整理成一個**以時間軸為主、工業/學術風格、雙語、零 build** 的單頁互動網站。
+把 [Conference on Language Modeling (COLM) 2026](https://colmweb.org/) 官網的內容,整理成**複合多區段、學術簡潔風、雙語、零 build** 的單頁互動網站。
 
-> 🌐 **線上版**:<https://tingwei161803.github.io/colm-info/>
+> 🌐 **線上版(兩種設計,挑你喜歡的)**
+> - **學術簡潔 · 複合多區段(主頁)** → <https://tingwei161803.github.io/colm-info/>
+> - **`colm2026.html`(深紫 · 單檔設計)** → <https://tingwei161803.github.io/colm-info/colm2026.html>
 
-COLM 是聚焦於「廣義語言模型」的學術會議,2026 年 10 月 6–9 日於**美國舊金山 Hilton Union Square** 舉行。本頁把官網的重要時程、工作坊、徵稿主題、組織成員、FAQ 與政策整併成一頁,**以時間軸開場**、一個搜尋框篩選全站。
+COLM 是聚焦於「廣義語言建模」的學術會議,2026 年 10 月 6–9 日於**美國舊金山 Hilton Union Square** 舉行。本頁把官網的重要日期、徵稿主題、工作坊、組織成員、FAQ 與政策,整併成**一頁多區段**:hero 統計 → 關於 → 時間軸 → 主題 → 工作坊 → 組織 → FAQ → 指南/政策 → CTA,搭配 sticky 區段導覽與 scrollspy。
 
 ---
 
 ## ✨ 功能特色
 
-- **🗓️ 即時狀態時間軸** — 11 個關鍵里程碑(投稿開放→摘要→完整論文→答辯→錄取→會議),狀態(已結束 / 進行中 / 下一步 / 尚未開始)**相對今天即時計算**,進行中與下一個會以紅色標示。
-- **🔎 全站搜尋** — 一個搜尋框同時篩選時間軸、工作坊、主題、人員、FAQ、指南;沒有命中的區塊與導覽會自動隱藏。
-- **🧭 章節導覽 + scroll-spy** — 6 區(時程 / 工作坊 / 主題 / 組織 / FAQ / 指南),捲動時自動高亮當前章節。
-- **🪪 詳情視窗** — 點時間軸任一事件開啟 dialog,可用 ← / → 切換、Esc 關閉,並支援 `#slug` 深連結。
-- **🌐 中英全頁切換** + **🌗 深淺色切換**(Swiss-print 淺色 / tactical 深色),選擇記在 `localStorage`。
-- **📐 工業/學術視覺** — Archivo + IBM Plex Mono + Noto Sans TC、紅色 accent、點陣網格背景、硬邊框格線。
-- **🚀 零 build · 單檔** — 全部 HTML/CSS/JS/資料內嵌於 `index.html`,無框架、無打包,直接部署 GitHub Pages。
+- **🧱 複合多區段(composite)** — 一頁由 9 個區段依序組成,各區段用最適合的呈現:hero 數字、prose 長文、timeline 時間軸、cards 卡片格、accordion 手風琴、CTA。
+- **🧭 sticky 區段導覽 + scrollspy** — 頂部自動生成各區段膠囊導覽,捲動時即時高亮當前區段、並把它捲進導覽視野。
+- **🔢 hero 數字動畫** — 屆次 3、會議天數 4、工作坊 18、徵稿主題 17,進入視野時 count-up。
+- **🪪 詳情視窗 + 官方外連** — 點任一卡片(主題 / 工作坊 / 組織 / 指南)開啟 dialog,內含**可點的官方連結**(工作坊網站、徵稿頁、講者個人首頁、官方文件),Esc 關閉、支援 `#slug` 深連結。
+- **🌐 中英全頁切換** — 按語言鈕整頁(區段、卡片、導覽、`<title>`)即時重繪,不殘留另一語言。
+- **🌗 深淺色切換** — 暖色淺色 / 暖色深色,選擇記在 `localStorage`。
+- **🎞️ 捲動淡入** — minimalist 風格的輕微入場動畫(`IntersectionObserver`;無 JS 時內容照樣完整顯示)。
+- **📐 學術簡潔視覺** — Newsreader serif 標題 + Hanken Grotesk 內文 + Noto Serif/Sans TC + Spline Sans Mono,暖灰單色、單一 slate accent、1px 細邊框、無漸層無重陰影。
+- **🚀 零 build** — 純 HTML/CSS/JS,資料存成 `window.SITE_SECTIONS`,無框架、無打包,直接部署 GitHub Pages。
 
 ---
 
@@ -24,21 +28,30 @@ COLM 是聚焦於「廣義語言模型」的學術會議,2026 年 10 月 6–9 �
 
 ```
 colm-info/
-├── index.html          # 單檔站:版面 + CSS + 資料 + app 全內嵌(timeline 版型)
+├── index.html          # 複合多區段主頁(composite 版型)
+├── assets/
+│   ├── styles.css      # MD3 基底 + 學術簡潔覆寫皮膚
+│   └── app.js          # 區段渲染註冊表 + i18n + dialog + scrollspy + 捲動淡入
+├── data/
+│   └── data.js         # window.SITE_META + SITE_SECTIONS(9 區段,雙語)
+├── colm2026.html       # 另一版獨立單檔設計(深紫 · Space Grotesk)
 ├── archive/
-│   ├── v1/             # 第一版:gallery 卡片版型(多檔)
-│   └── v2/             # 第二版:FAQ 知識庫手風琴版型(多檔)
+│   ├── v1/             # 第一版:gallery 卡片版型
+│   ├── v2/             # 第二版:FAQ 知識庫手風琴
+│   └── v3/             # 第三版:timeline 互動時間軸(工業風,單檔)
 ├── .nojekyll           # 讓 GitHub Pages 跳過 Jekyll
 └── README.md
 ```
 
-目前的 `index.html` 內含:時間軸事件 11、工作坊 18、徵稿主題 17、籌辦委員 12、理事 8、FAQ 15、指南/政策 10。資料以 `SITE_EVENTS / SITE_WORKSHOPS / SITE_TOPICS / SITE_ORGANIZERS / SITE_BOARD / SITE_FAQ / SITE_GUIDES` 等全域陣列定義,皆為 `{ en, zh }` 雙語。
+主頁 `data/data.js` 內含 9 個區段:**徵稿主題 17、工作坊 18、籌辦委員 12 + 理事 8、FAQ 15、指南/政策 11**,以及時間軸 11 個里程碑。資料以 `window.SITE_SECTIONS` 的 typed section-block 陣列定義(`type` 驅動渲染),每個可見字串皆為 `{ en, zh }` 雙語。
 
-### 版本沿革(三種版型,皆保留)
+### 版本沿革(皆保留,可並列比較)
 
-| 版本 | 版型 | 位置 |
-|------|------|------|
-| v3(目前) | **timeline** 互動時間軸 · 工業風 | `/`(root) |
+| 版本 | 版型 / 風格 | 位置 |
+|------|------------|------|
+| **v4(目前主頁)** | **composite** 複合多區段 · 學術簡潔 | [`/`](https://tingwei161803.github.io/colm-info/) |
+| `colm2026.html` | 單檔 · 深紫 Space Grotesk 設計 | [`/colm2026.html`](https://tingwei161803.github.io/colm-info/colm2026.html) |
+| v3 | **timeline** 互動時間軸 · 工業風 | [`/archive/v3/`](https://tingwei161803.github.io/colm-info/archive/v3/) |
 | v2 | **faq** 知識庫手風琴 · 學術簡潔 | [`/archive/v2/`](https://tingwei161803.github.io/colm-info/archive/v2/) |
 | v1 | **gallery** 卡片 + modal | [`/archive/v1/`](https://tingwei161803.github.io/colm-info/archive/v1/) |
 
@@ -57,7 +70,7 @@ colm-info/
 uv run python -m http.server 4173   # 然後開 http://localhost:4173
 ```
 
-或直接用瀏覽器打開 `index.html`(`file://` 也能跑)。
+或直接用瀏覽器打開 `index.html` / `colm2026.html`(`file://` 也能跑)。
 
 ### (選配)UX 測試
 
