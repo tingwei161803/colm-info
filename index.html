@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ==== Primary meta ==== -->
+  <title>COLM 2026 · Conference on Language Modeling — 知識庫</title>
+  <meta name="description" content="An unofficial, searchable knowledge base for the Conference on Language Modeling (COLM 2026): key dates, calls for papers & workshops, submission/review guidelines, code of conduct & ethics, workshops, organizers and FAQ. San Francisco, October 6–9, 2026." />
+  <link rel="canonical" href="https://tingwei161803.github.io/colm-info/" />
+  <meta name="theme-color" content="#1b1b19" />
+
+  <!-- ==== Open Graph ==== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="COLM 2026 · Conference on Language Modeling — 知識庫" />
+  <meta property="og:description" content="Searchable knowledge base for COLM 2026 — dates, calls, guidelines, policies, workshops and people. San Francisco, Oct 6–9, 2026. (Unofficial mirror of colmweb.org.)" />
+  <meta property="og:url" content="https://tingwei161803.github.io/colm-info/" />
+  <meta property="og:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
+
+  <!-- ==== Twitter ==== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="COLM 2026 · Conference on Language Modeling — 知識庫" />
+  <meta name="twitter:description" content="Searchable knowledge base for COLM 2026 — dates, calls, guidelines, policies, workshops and people." />
+  <meta name="twitter:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
+
+  <!-- ==== JSON-LD structured data ==== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": "COLM 2026 Knowledge Base",
+    "description": "Unofficial, searchable knowledge base for the Conference on Language Modeling 2026.",
+    "url": "https://tingwei161803.github.io/colm-info/",
+    "isPartOf": { "@type": "WebSite", "name": "COLM 2026", "url": "https://colmweb.org/" }
+  }
+  </script>
+
+  <!-- ==== Fonts (CDN, no local files) — editorial serif + clean sans + mono ==== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- ==== App bar ==== -->
+  <header class="appbar">
+    <div class="appbar__inner">
+      <a class="brand" href="#" aria-label="COLM 2026">
+        <span class="brand__mark">COLM</span>
+        <span class="brand__year">2026</span>
+      </a>
+
+      <div class="appbar__actions">
+        <a class="gh-star" id="ghStar" href="https://github.com/tingwei161803/colm-info" target="_blank" rel="noopener"
+           data-repo="tingwei161803/colm-info" aria-label="Star this project on GitHub">
+          <span class="material-symbols-rounded">star</span>
+          <span class="gh-star__label">Star</span>
+          <span class="gh-star__count" id="ghStarCount">—</span>
+        </a>
+
+        <button class="icon-btn" id="langToggle" type="button"
+                title="Language" aria-label="Toggle language / 切換語言">
+          <span class="material-symbols-rounded">translate</span>
+          <span class="icon-btn__txt" id="langLabel">中</span>
+        </button>
+
+        <button class="icon-btn" id="themeToggle" type="button"
+                title="Theme" aria-label="Toggle theme / 切換深淺色">
+          <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==== Hero ==== -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow" data-i18n="eyebrow">Conference on Language Modeling · Knowledge Base</p>
+      <h1 class="hero__title" id="heroTitle"></h1>
+      <p class="hero__subtitle" id="heroSubtitle"></p>
+    </div>
+  </section>
+
+  <!-- ==== Controls: search + chips + expand/collapse ==== -->
+  <section class="controls">
+    <div class="controls__inner">
+      <div class="search">
+        <span class="material-symbols-rounded search__icon">search</span>
+        <input class="search__input" id="searchInput" type="search"
+               autocomplete="off" aria-label="Search / 搜尋"
+               data-i18n-attr="placeholder" data-i18n="search"
+               placeholder="搜尋…" />
+        <span class="search__count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="controls__row">
+        <div class="chips" id="chips" role="group" aria-label="Filters / 篩選"></div>
+        <button class="text-btn" id="expandAll" type="button">
+          <span class="material-symbols-rounded">unfold_more</span>
+          <span data-i18n="expandAll">Expand all</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== FAQ / knowledge-base accordion list ==== -->
+  <main class="faq" id="faq" aria-live="polite"></main>
+
+  <!-- Empty state -->
+  <p class="empty" id="empty" hidden data-i18n="empty">No results.</p>
+
+  <!-- ==== Footer ==== -->
+  <footer class="footer">
+    <p class="footer__line">
+      <span data-i18n="footer.source">Source</span>:
+      <a href="https://colmweb.org/" target="_blank" rel="noopener">colmweb.org</a>
+    </p>
+    <p class="footer__line footer__muted" data-i18n="footer"></p>
+  </footer>
+
+  <!-- ==== Scripts (order matters: data first) ==== -->
+  <script src="data/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
