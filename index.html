@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ==== Primary meta ==== -->
+  <title>COLM 2026 · Conference on Language Modeling</title>
+  <meta name="description" content="An unofficial, searchable mirror of the Conference on Language Modeling (COLM 2026): key dates, call for papers & workshops, submission and review guidelines, code of conduct & ethics, organizers and board. San Francisco, October 6–9, 2026." />
+  <link rel="canonical" href="https://tingwei161803.github.io/colm-info/" />
+  <meta name="theme-color" content="#1b1b19" />
+
+  <!-- ==== Open Graph ==== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="COLM 2026 · Conference on Language Modeling" />
+  <meta property="og:description" content="Searchable guide to COLM 2026 — dates, calls, guidelines, policies, workshops and people. San Francisco, Oct 6–9, 2026. (Unofficial mirror of colmweb.org.)" />
+  <meta property="og:url" content="https://tingwei161803.github.io/colm-info/" />
+  <meta property="og:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
+
+  <!-- ==== Twitter ==== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="COLM 2026 · Conference on Language Modeling" />
+  <meta name="twitter:description" content="Searchable guide to COLM 2026 — dates, calls, guidelines, policies, workshops and people." />
+  <meta name="twitter:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
+
+  <!-- ==== JSON-LD structured data ==== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Conference on Language Modeling 2026 (COLM 2026)",
+    "description": "Academic venue focused on the study of language modeling, broadly defined.",
+    "startDate": "2026-10-06",
+    "endDate": "2026-10-09",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Hilton Union Square",
+      "address": "San Francisco, USA"
+    },
+    "url": "https://colmweb.org/",
+    "sameAs": "https://colmweb.org/"
+  }
+  </script>
+
+  <!-- ==== Fonts (CDN, no local files) — editorial serif + clean sans + mono ==== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- ==== App bar ==== -->
+  <header class="appbar">
+    <div class="appbar__inner">
+      <a class="brand" href="#" aria-label="COLM 2026 home">
+        <span class="brand__mark">COLM</span>
+        <span class="brand__year">2026</span>
+      </a>
+
+      <div class="appbar__actions">
+        <a class="gh-star" id="ghStar" href="https://github.com/tingwei161803/colm-info" target="_blank" rel="noopener"
+           data-repo="tingwei161803/colm-info" aria-label="Star this project on GitHub">
+          <span class="material-symbols-rounded">star</span>
+          <span class="gh-star__label">Star</span>
+          <span class="gh-star__count" id="ghStarCount">—</span>
+        </a>
+
+        <button class="icon-btn" id="langToggle" type="button"
+                title="Language" aria-label="Toggle language / 切換語言">
+          <span class="material-symbols-rounded">translate</span>
+          <span class="icon-btn__txt" id="langLabel">中</span>
+        </button>
+
+        <button class="icon-btn" id="themeToggle" type="button"
+                title="Theme" aria-label="Toggle theme / 切換深淺色">
+          <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==== Hero ==== -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow" data-i18n="hero.eyebrow">Conference on Language Modeling</p>
+      <h1 class="hero__title"><span class="hero__title-colm">COLM</span> 2026</h1>
+      <p class="hero__sub" data-i18n="hero.sub">A community for researchers understanding, improving, and critiquing language-model technology.</p>
+      <div class="hero__meta">
+        <span class="hero__chip"><span class="material-symbols-rounded">location_on</span><span data-i18n="hero.venue">Hilton Union Square, San Francisco</span></span>
+        <span class="hero__chip"><span class="material-symbols-rounded">calendar_month</span><span data-i18n="hero.dateline">October 6–9, 2026</span></span>
+      </div>
+      <div class="hero__countdown" id="countdown" hidden>
+        <span class="hero__countdown-label" id="countdownLabel"></span>
+        <span class="hero__countdown-value" id="countdownValue"></span>
+      </div>
+      <p class="hero__note" data-i18n="hero.note">Unofficial, searchable mirror of colmweb.org — content belongs to the COLM Organization.</p>
+    </div>
+  </section>
+
+  <!-- ==== Controls: search + filter chips ==== -->
+  <section class="controls">
+    <div class="controls__inner">
+      <div class="search">
+        <span class="material-symbols-rounded search__icon">search</span>
+        <input class="search__input" id="searchInput" type="search"
+               autocomplete="off" aria-label="Search / 搜尋"
+               data-i18n-attr="placeholder" data-i18n="search"
+               placeholder="Search dates, policies, people…" />
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filters / 篩選"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ==== Card grid ==== -->
+  <main class="grid" id="grid" aria-live="polite"></main>
+
+  <!-- Empty state -->
+  <p class="empty" id="empty" hidden data-i18n="empty">No results.</p>
+
+  <!-- ==== Detail dialog ==== -->
+  <dialog class="dialog" id="dialog" aria-label="Detail">
+    <div class="dialog__bar">
+      <button class="icon-btn" id="navPrev" type="button" aria-label="Previous / 上一個">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+      <button class="icon-btn" id="navNext" type="button" aria-label="Next / 下一個">
+        <span class="material-symbols-rounded">chevron_right</span>
+      </button>
+      <span class="dialog__spacer"></span>
+      <button class="icon-btn" id="dialogClose" type="button" aria-label="Close / 關閉">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </div>
+    <div class="dialog__body" id="dialogBody"></div>
+  </dialog>
+
+  <!-- ==== Footer ==== -->
+  <footer class="footer">
+    <p class="footer__line" data-i18n="footer.tagline">An unofficial, community-built mirror of COLM 2026.</p>
+    <p class="footer__line footer__muted">
+      <span data-i18n="footer.source">Source</span>:
+      <a href="https://colmweb.org/" target="_blank" rel="noopener">colmweb.org</a>
+      · <span data-i18n="footer.built">Built with lazy-data2web · static, no build step.</span>
+    </p>
+  </footer>
+
+  <!-- ==== Scripts (order matters: data first) ==== -->
+  <script src="data/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

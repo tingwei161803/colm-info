@@ -1,0 +1,10 @@
+# Playwright MCP / test artifacts
+.playwright-mcp/
+
+# Python tooling (tests run via ephemeral `uv run --with playwright`)
+.venv/
+__pycache__/
+*.pyc
+
+# OS noise
+.DS_Store
