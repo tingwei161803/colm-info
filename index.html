@@ -1,126 +1,1174 @@
 <!DOCTYPE html>
-<html lang="zh" data-theme="light">
+<!--
+  COLM 2026 · single-file interactive timeline
+  Built with lazy-data2web-web. Timeline-led, industrial/academic aesthetic.
+  All CSS/JS/data inlined. No build step. Bilingual (zh-Hant default + EN).
+  Content paraphrased & curated from https://colmweb.org/ and its subpages.
+-->
+<html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ==== Primary meta ==== -->
-  <title>COLM 2026 · Conference on Language Modeling — 知識庫</title>
-  <meta name="description" content="An unofficial, searchable knowledge base for the Conference on Language Modeling (COLM 2026): key dates, calls for papers & workshops, submission/review guidelines, code of conduct & ethics, workshops, organizers and FAQ. San Francisco, October 6–9, 2026." />
+  <title>COLM 2026 · 語言模型會議</title>
+  <meta name="description" content="第三屆語言模型會議 (Conference on Language Modeling, COLM 2026) — 重要時程、工作坊、主題、組織與政策的互動整理頁。San Francisco, Oct 6–9, 2026. Unofficial mirror of colmweb.org." />
+  <meta name="theme-color" content="#111111" />
   <link rel="canonical" href="https://tingwei161803.github.io/colm-info/" />
-  <meta name="theme-color" content="#1b1b19" />
 
-  <!-- ==== Open Graph ==== -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="COLM 2026 · Conference on Language Modeling — 知識庫" />
-  <meta property="og:description" content="Searchable knowledge base for COLM 2026 — dates, calls, guidelines, policies, workshops and people. San Francisco, Oct 6–9, 2026. (Unofficial mirror of colmweb.org.)" />
+  <meta property="og:title" content="COLM 2026 · Conference on Language Modeling" />
+  <meta property="og:description" content="Interactive timeline & overview of COLM 2026 — dates, workshops, topics, organizers, FAQ and policies. San Francisco, Oct 6–9, 2026. (Unofficial mirror of colmweb.org.)" />
   <meta property="og:url" content="https://tingwei161803.github.io/colm-info/" />
-  <meta property="og:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="COLM 2026 · Conference on Language Modeling" />
+  <meta name="twitter:description" content="Interactive timeline & overview of COLM 2026 — dates, workshops, topics, organizers, FAQ and policies." />
 
-  <!-- ==== Twitter ==== -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="COLM 2026 · Conference on Language Modeling — 知識庫" />
-  <meta name="twitter:description" content="Searchable knowledge base for COLM 2026 — dates, calls, guidelines, policies, workshops and people." />
-  <meta name="twitter:image" content="https://tingwei161803.github.io/colm-info/assets/og-image.png" />
-
-  <!-- ==== JSON-LD structured data ==== -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "name": "COLM 2026 Knowledge Base",
-    "description": "Unofficial, searchable knowledge base for the Conference on Language Modeling 2026.",
-    "url": "https://tingwei161803.github.io/colm-info/",
-    "isPartOf": { "@type": "WebSite", "name": "COLM 2026", "url": "https://colmweb.org/" }
+    "@type": "Event",
+    "name": "Conference on Language Modeling 2026 (COLM 2026)",
+    "startDate": "2026-10-06",
+    "endDate": "2026-10-09",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": { "@type": "Place", "name": "Hilton Union Square", "address": "San Francisco, USA" },
+    "url": "https://colmweb.org/"
   }
   </script>
 
-  <!-- ==== Fonts (CDN, no local files) — editorial serif + clean sans + mono ==== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Spline+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    /* ============ Industrial / Academic tokens — LIGHT (Swiss print) ============ */
+    :root, [data-theme="light"] {
+      --bg:        #F4F4F0;
+      --surface:   #ECEAE3;
+      --surface-2: #E2E0D7;
+      --ink:       #131210;
+      --muted:     #56534B;
+      --line:      #CBC8BD;
+      --line-2:    #131210;
+      --accent:    #E61919;
+      --accent-ink:#FFFFFF;
+      --ok:        #1f7a3d;
+      --grid-dot:  rgba(19,18,16,.05);
+    }
+    /* ============ Tactical telemetry — DARK ============ */
+    [data-theme="dark"] {
+      --bg:        #0D0D0C;
+      --surface:   #161614;
+      --surface-2: #1E1E1B;
+      --ink:       #ECEAE3;
+      --muted:     #989489;
+      --line:      #2A2A26;
+      --line-2:    #ECEAE3;
+      --accent:    #FF2A2A;
+      --accent-ink:#0D0D0C;
+      --ok:        #4AF626;
+      --grid-dot:  rgba(236,234,227,.05);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Archivo", "Noto Sans TC", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      transition: background .2s, color .2s;
+      background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    a { color: inherit; text-decoration: none; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    .up   { text-transform: uppercase; letter-spacing: .08em; }
+
+    /* ---------- App bar ---------- */
+    .appbar {
+      position: sticky; top: 0; z-index: 40;
+      background: var(--bg);
+      border-bottom: 2px solid var(--line-2);
+    }
+    .appbar__inner {
+      max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .brand { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .brand__mark {
+      font-family: "Archivo"; font-weight: 900; font-size: 1.25rem;
+      letter-spacing: -.03em; color: var(--ink);
+    }
+    .brand__mark b { color: var(--accent); }
+    .brand__sub {
+      font-family: "IBM Plex Mono", monospace; font-size: .66rem;
+      text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .appbar__actions { margin-left: auto; display: flex; gap: 0; flex: 0 0 auto;
+      border: 1px solid var(--line-2); }
+    .iconbtn {
+      display: inline-flex; align-items: center; gap: 5px;
+      border: none; background: transparent; color: var(--ink);
+      padding: 7px 11px; cursor: pointer;
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    .iconbtn + .iconbtn { border-left: 1px solid var(--line-2); }
+    .iconbtn:hover { background: var(--ink); color: var(--bg); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      max-width: 1180px; margin: 0 auto; padding: 40px 20px 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero__kicker {
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .16em; color: var(--accent);
+      margin: 0 0 14px;
+    }
+    .hero__title {
+      font-family: "Archivo"; font-weight: 900;
+      font-size: clamp(2.1rem, 7vw, 5.2rem); line-height: .92;
+      letter-spacing: -.035em; margin: 0; text-transform: uppercase;
+    }
+    .hero__meta {
+      margin: 22px 0 0; display: grid; gap: 1px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      background: var(--line); border: 1px solid var(--line);
+    }
+    .fact { background: var(--bg); padding: 14px 16px; }
+    .fact__k {
+      font-family: "IBM Plex Mono", monospace; font-size: .64rem;
+      text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0;
+    }
+    .fact__v { margin: 6px 0 0; font-weight: 700; font-size: .98rem; line-height: 1.25; }
+    .hero__lead { margin: 22px 0 0; max-width: 60ch; color: var(--muted); line-height: 1.65; font-size: .98rem; }
+    .hero__links { margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .linkpill {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--line-2); padding: 7px 12px;
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .06em; cursor: pointer;
+    }
+    .linkpill:hover { background: var(--ink); color: var(--bg); }
+    .linkpill::after { content: "↗"; font-size: .8em; opacity: .6; }
+
+    /* ---------- Section nav ---------- */
+    .nav {
+      position: sticky; top: 53px; z-index: 30;
+      background: var(--bg); border-bottom: 2px solid var(--line-2);
+    }
+    .nav__inner {
+      max-width: 1180px; margin: 0 auto; padding: 0 20px;
+      display: flex; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .nav a {
+      flex: 0 0 auto; padding: 12px 14px;
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+      border-bottom: 2px solid transparent; margin-bottom: -2px; white-space: nowrap;
+    }
+    .nav a:hover { color: var(--ink); }
+    .nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+    /* ---------- Search ---------- */
+    .searchbar { max-width: 1180px; margin: 0 auto; padding: 18px 20px 4px; }
+    .search {
+      display: flex; align-items: center; gap: 10px;
+      border: 1px solid var(--line-2); padding: 0 14px; background: var(--surface);
+    }
+    .search input {
+      flex: 1; border: none; background: transparent; color: var(--ink);
+      font-family: "IBM Plex Mono", monospace; font-size: .9rem; padding: 13px 0; outline: none;
+    }
+    .search .glyph { color: var(--muted); font-family: "IBM Plex Mono", monospace; }
+    .search__count {
+      font-family: "IBM Plex Mono", monospace; font-size: .7rem; color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ---------- Generic section ---------- */
+    .section { max-width: 1180px; margin: 0 auto; padding: 40px 20px; scroll-margin-top: 104px; }
+    .section[hidden] { display: none; }
+    .sec-head { display: flex; align-items: baseline; gap: 12px; border-bottom: 2px solid var(--line-2); padding-bottom: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    .sec-num { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--accent); font-weight: 600; }
+    .sec-title { font-family: "Archivo"; font-weight: 800; font-size: clamp(1.3rem, 3.4vw, 2rem); letter-spacing: -.02em; margin: 0; text-transform: uppercase; }
+    .sec-note { font-family: "IBM Plex Mono", monospace; font-size: .7rem; color: var(--muted); margin-left: auto; }
+
+    /* ---------- Timeline ---------- */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+    .chip {
+      border: 1px solid var(--line-2); background: transparent; color: var(--ink);
+      padding: 6px 13px; cursor: pointer;
+      font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .chip:hover:not([aria-pressed="true"]) { background: var(--surface-2); }
+
+    .timeline { position: relative; }
+    .tl-row {
+      display: grid; grid-template-columns: 132px 1fr; gap: 0;
+      border-top: 1px solid var(--line); cursor: pointer;
+      transition: background .12s;
+    }
+    .tl-row:hover { background: var(--surface); }
+    .tl-row:last-child { border-bottom: 1px solid var(--line); }
+    .tl-date {
+      padding: 18px 16px 18px 0; border-right: 2px solid var(--line-2);
+      font-family: "IBM Plex Mono", monospace;
+    }
+    .tl-date .d { font-size: 1.5rem; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+    .tl-date .m { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 4px; }
+    .tl-date .y { font-size: .66rem; color: var(--muted); margin-top: 2px; }
+    .tl-body { padding: 16px 4px 16px 18px; position: relative; }
+    .tl-body::before {
+      content: ""; position: absolute; left: -3px; top: 22px;
+      width: 8px; height: 8px; background: var(--line-2);
+    }
+    .tl-row[data-status="now"]  .tl-body::before { background: var(--accent); }
+    .tl-row[data-status="next"] .tl-body::before { background: var(--accent); box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent); }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 7px; }
+    .tag {
+      font-family: "IBM Plex Mono", monospace; font-size: .62rem;
+      text-transform: uppercase; letter-spacing: .08em;
+      border: 1px solid var(--line); padding: 2px 7px; color: var(--muted);
+    }
+    .tag--cat { border-color: var(--line-2); color: var(--ink); }
+    .status {
+      font-family: "IBM Plex Mono", monospace; font-size: .62rem;
+      text-transform: uppercase; letter-spacing: .08em; padding: 2px 7px;
+    }
+    .status--done { color: var(--muted); border: 1px solid var(--line); }
+    .status--now  { background: var(--accent); color: var(--accent-ink); }
+    .status--next { border: 1px solid var(--accent); color: var(--accent); }
+    .status--upcoming { color: var(--muted); border: 1px dashed var(--line); }
+    .tl-title { font-weight: 700; font-size: 1.08rem; margin: 0; letter-spacing: -.01em; }
+    .tl-excerpt { margin: 6px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+    .tl-row[data-status="done"] .tl-title { color: var(--muted); }
+
+    /* ---------- Workshops ---------- */
+    .grid {
+      display: grid; gap: 1px; background: var(--line);
+      border: 1px solid var(--line);
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    }
+    .ws { background: var(--bg); padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+    .ws__n { font-family: "IBM Plex Mono", monospace; font-size: .68rem; color: var(--accent); }
+    .ws__title { font-weight: 700; font-size: .98rem; line-height: 1.3; letter-spacing: -.01em; }
+    .ws__zh { color: var(--muted); font-size: .82rem; line-height: 1.45; }
+    .ws__links { margin-top: auto; padding-top: 8px; display: flex; gap: 14px; }
+    .ws__links a {
+      font-family: "IBM Plex Mono", monospace; font-size: .68rem;
+      text-transform: uppercase; letter-spacing: .05em; color: var(--ink);
+      border-bottom: 1px solid var(--accent); padding-bottom: 1px;
+    }
+    .ws__links a:hover { color: var(--accent); }
+
+    /* ---------- Topics ---------- */
+    .topics { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line);
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .topic { background: var(--bg); padding: 13px 16px; display: flex; gap: 11px; align-items: baseline; }
+    .topic__n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--accent); flex: 0 0 auto; }
+    .topic__t { font-size: .9rem; line-height: 1.4; }
+    .topic__t .en { font-weight: 600; }
+    .topic__t .zh { color: var(--muted); display: block; font-size: .82rem; margin-top: 2px; }
+
+    /* ---------- People ---------- */
+    .people { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line);
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .person { background: var(--bg); padding: 15px 16px; display: flex; flex-direction: column; gap: 3px; }
+    .person__role { font-family: "IBM Plex Mono", monospace; font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+    .person__name { font-weight: 700; font-size: .98rem; }
+    .person__name a:hover { color: var(--accent); border-bottom: 1px solid var(--accent); }
+    .person__aff { color: var(--muted); font-size: .8rem; line-height: 1.35; }
+
+    /* ---------- FAQ ---------- */
+    .faq { border-top: 1px solid var(--line); }
+    .qa { border-bottom: 1px solid var(--line); }
+    .qa__q {
+      width: 100%; text-align: left; background: transparent; border: none; cursor: pointer;
+      padding: 16px 0; display: flex; gap: 14px; align-items: flex-start; color: var(--ink);
+      font-family: inherit; font-size: 1rem; font-weight: 600; line-height: 1.4;
+    }
+    .qa__q .mk { font-family: "IBM Plex Mono", monospace; color: var(--accent); flex: 0 0 auto; font-size: .9rem; margin-top: 2px; }
+    .qa__cat { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: .58rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border: 1px solid var(--line); padding: 1px 6px; margin-left: 8px; vertical-align: middle; }
+    .qa__a { padding: 0 0 18px 30px; color: var(--muted); line-height: 1.65; font-size: .92rem; display: none; }
+    .qa[aria-expanded="true"] .qa__a { display: block; }
+    .qa[aria-expanded="true"] .qa__q .mk { color: var(--ink); }
+
+    /* ---------- Guides ---------- */
+    .guides { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .guide { background: var(--bg); padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+    .guide a.guide__t { font-weight: 700; font-size: .95rem; border-bottom: 1px solid var(--accent); align-self: flex-start; padding-bottom: 1px; }
+    .guide a.guide__t:hover { color: var(--accent); }
+    .guide__d { color: var(--muted); font-size: .84rem; line-height: 1.5; }
+
+    .empty { padding: 40px 0; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .85rem; }
+    .empty[hidden] { display: none; }
+
+    /* ---------- Dialog ---------- */
+    .dialog {
+      border: 2px solid var(--line-2); background: var(--bg); color: var(--ink);
+      max-width: 600px; width: calc(100% - 32px); padding: 0;
+    }
+    .dialog::backdrop { background: rgba(0,0,0,.62); }
+    .dialog__bar {
+      display: flex; align-items: center; gap: 0; border-bottom: 2px solid var(--line-2);
+      position: sticky; top: 0; background: var(--bg);
+    }
+    .dialog__bar .iconbtn { border: none; }
+    .dialog__bar .iconbtn + .iconbtn { border-left: 1px solid var(--line); }
+    .dialog__spacer { flex: 1; }
+    .dialog__body { padding: 24px; }
+    .dialog__tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .dialog__date { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--accent); margin: 0 0 6px; }
+    .dialog__body h2 { margin: 0 0 12px; font-weight: 800; font-size: 1.4rem; letter-spacing: -.01em; line-height: 1.2; }
+    .dialog__body p { color: var(--muted); line-height: 1.65; margin: 0 0 12px; }
+    .dialog__links { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 8px; }
+    .dialog__links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: "IBM Plex Mono", monospace; font-size: .76rem;
+      text-transform: uppercase; letter-spacing: .05em;
+      border: 1px solid var(--line-2); padding: 8px 12px; align-self: flex-start;
+    }
+    .dialog__links a:hover { background: var(--ink); color: var(--bg); }
+    .dialog__links a::after { content: "↗"; opacity: .6; }
+
+    /* ---------- Footer ---------- */
+    .footer { border-top: 2px solid var(--line-2); margin-top: 20px; }
+    .footer__inner { max-width: 1180px; margin: 0 auto; padding: 28px 20px;
+      font-family: "IBM Plex Mono", monospace; font-size: .74rem; color: var(--muted);
+      display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+    .footer a { color: var(--ink); border-bottom: 1px solid var(--accent); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 640px) {
+      .tl-row { grid-template-columns: 92px 1fr; }
+      .tl-date .d { font-size: 1.2rem; }
+      .hero__title { letter-spacing: -.02em; }
+    }
+  </style>
 </head>
 <body>
-  <!-- ==== App bar ==== -->
+  <!-- App bar -->
   <header class="appbar">
     <div class="appbar__inner">
-      <a class="brand" href="#" aria-label="COLM 2026">
-        <span class="brand__mark">COLM</span>
-        <span class="brand__year">2026</span>
+      <a class="brand" href="#top">
+        <span class="brand__mark">COLM<b>·</b>2026</span>
+        <span class="brand__sub" data-i18n="brandSub"></span>
       </a>
-
       <div class="appbar__actions">
-        <a class="gh-star" id="ghStar" href="https://github.com/tingwei161803/colm-info" target="_blank" rel="noopener"
-           data-repo="tingwei161803/colm-info" aria-label="Star this project on GitHub">
-          <span class="material-symbols-rounded">star</span>
-          <span class="gh-star__label">Star</span>
-          <span class="gh-star__count" id="ghStarCount">—</span>
-        </a>
-
-        <button class="icon-btn" id="langToggle" type="button"
-                title="Language" aria-label="Toggle language / 切換語言">
-          <span class="material-symbols-rounded">translate</span>
-          <span class="icon-btn__txt" id="langLabel">中</span>
+        <button class="iconbtn" id="langToggle" type="button" aria-label="切換語言 / Toggle language">
+          <span id="langLabel">EN</span>
         </button>
-
-        <button class="icon-btn" id="themeToggle" type="button"
-                title="Theme" aria-label="Toggle theme / 切換深淺色">
-          <span class="material-symbols-rounded" id="themeIcon">dark_mode</span>
+        <button class="iconbtn" id="themeToggle" type="button" aria-label="切換深淺色 / Toggle theme">
+          <span id="themeLabel" class="mono">DARK</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ==== Hero ==== -->
-  <section class="hero">
-    <div class="hero__inner">
-      <p class="hero__eyebrow" data-i18n="eyebrow">Conference on Language Modeling · Knowledge Base</p>
-      <h1 class="hero__title" id="heroTitle"></h1>
-      <p class="hero__subtitle" id="heroSubtitle"></p>
-    </div>
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <p class="hero__kicker" data-i18n="kicker"></p>
+    <h1 class="hero__title" data-i18n-html="heroTitle"></h1>
+    <div class="hero__meta" id="heroMeta"></div>
+    <p class="hero__lead" data-i18n="lead"></p>
+    <div class="hero__links" id="heroLinks"></div>
   </section>
 
-  <!-- ==== Controls: search + chips + expand/collapse ==== -->
-  <section class="controls">
-    <div class="controls__inner">
-      <div class="search">
-        <span class="material-symbols-rounded search__icon">search</span>
-        <input class="search__input" id="searchInput" type="search"
-               autocomplete="off" aria-label="Search / 搜尋"
-               data-i18n-attr="placeholder" data-i18n="search"
-               placeholder="搜尋…" />
-        <span class="search__count" id="count" aria-live="polite"></span>
-      </div>
-      <div class="controls__row">
-        <div class="chips" id="chips" role="group" aria-label="Filters / 篩選"></div>
-        <button class="text-btn" id="expandAll" type="button">
-          <span class="material-symbols-rounded">unfold_more</span>
-          <span data-i18n="expandAll">Expand all</span>
-        </button>
-      </div>
+  <!-- Section nav -->
+  <nav class="nav"><div class="nav__inner" id="nav"></div></nav>
+
+  <!-- Search -->
+  <div class="searchbar">
+    <div class="search">
+      <span class="glyph">/</span>
+      <input id="searchInput" type="search" autocomplete="off" aria-label="搜尋 / Search" />
+      <span class="search__count mono" id="searchCount"></span>
     </div>
+  </div>
+
+  <!-- Timeline -->
+  <section class="section" id="sec-timeline">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title" data-i18n="s_timeline"></h2>
+      <span class="sec-note" data-i18n="s_timeline_note"></span>
+    </div>
+    <div class="chips" id="chips" role="group"></div>
+    <div class="timeline" id="timeline"></div>
+    <p class="empty" id="tlEmpty" hidden></p>
   </section>
 
-  <!-- ==== FAQ / knowledge-base accordion list ==== -->
-  <main class="faq" id="faq" aria-live="polite"></main>
+  <!-- Workshops -->
+  <section class="section" id="sec-workshops">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title" data-i18n="s_workshops"></h2>
+      <span class="sec-note" id="wsNote"></span>
+    </div>
+    <div class="grid" id="workshops"></div>
+    <p class="empty" id="wsEmpty" hidden></p>
+  </section>
 
-  <!-- Empty state -->
-  <p class="empty" id="empty" hidden data-i18n="empty">No results.</p>
+  <!-- Topics -->
+  <section class="section" id="sec-topics">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title" data-i18n="s_topics"></h2>
+      <span class="sec-note" data-i18n="s_topics_note"></span>
+    </div>
+    <div class="topics" id="topics"></div>
+    <p class="empty" id="topEmpty" hidden></p>
+  </section>
 
-  <!-- ==== Footer ==== -->
+  <!-- People -->
+  <section class="section" id="sec-people">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title" data-i18n="s_people"></h2>
+      <span class="sec-note" id="peopleNote"></span>
+    </div>
+    <h3 class="mono up" style="font-size:.74rem;color:var(--muted);margin:0 0 12px" data-i18n="g_org"></h3>
+    <div class="people" id="organizers"></div>
+    <h3 class="mono up" style="font-size:.74rem;color:var(--muted);margin:30px 0 12px" data-i18n="g_board"></h3>
+    <div class="people" id="board"></div>
+    <p class="empty" id="pplEmpty" hidden></p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="sec-faq">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title" data-i18n="s_faq"></h2>
+      <span class="sec-note" id="faqNote"></span>
+    </div>
+    <div class="faq" id="faq"></div>
+    <p class="empty" id="faqEmpty" hidden></p>
+  </section>
+
+  <!-- Guides -->
+  <section class="section" id="sec-guides">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title" data-i18n="s_guides"></h2>
+      <span class="sec-note" data-i18n="s_guides_note"></span>
+    </div>
+    <div class="guides" id="guides"></div>
+    <p class="empty" id="guideEmpty" hidden></p>
+  </section>
+
+  <!-- Detail dialog -->
+  <dialog class="dialog" id="dialog">
+    <div class="dialog__bar">
+      <button class="iconbtn" id="navPrev" type="button" aria-label="上一個 / Previous">←</button>
+      <button class="iconbtn" id="navNext" type="button" aria-label="下一個 / Next">→</button>
+      <span class="dialog__spacer"></span>
+      <button class="iconbtn" id="dialogClose" type="button" aria-label="關閉 / Close">✕ ESC</button>
+    </div>
+    <div class="dialog__body" id="dialogBody"></div>
+  </dialog>
+
+  <!-- Footer -->
   <footer class="footer">
-    <p class="footer__line">
-      <span data-i18n="footer.source">Source</span>:
-      <a href="https://colmweb.org/" target="_blank" rel="noopener">colmweb.org</a>
-    </p>
-    <p class="footer__line footer__muted" data-i18n="footer"></p>
+    <div class="footer__inner">
+      <span data-i18n="foot_left"></span>
+      <span data-i18n-html="foot_right"></span>
+    </div>
   </footer>
 
-  <!-- ==== Scripts (order matters: data first) ==== -->
-  <script src="data/data.js"></script>
-  <script src="assets/app.js"></script>
+  <!-- ===================== DATA ===================== -->
+  <script>
+    const SITE_META = {
+      brandSub: { en: "3rd Conference on Language Modeling", zh: "第三屆語言模型會議" },
+      kicker:   { en: "Hilton Union Square · San Francisco, USA · Oct 6–9, 2026", zh: "Hilton Union Square · 美國舊金山 · 2026 年 10 月 6–9 日" },
+      lead: {
+        en: "COLM is an academic venue dedicated to the study of language modeling, broadly defined — bringing together researchers across disciplines to understand, improve, and critique the development of LM technology. This page is an unofficial, tidied overview of the 2026 edition.",
+        zh: "COLM 是一個專注於「廣義語言模型」研究的學術會議,匯聚跨領域研究者,共同理解、改進並反思語言模型技術的發展。本頁為 2026 屆資訊的非官方整理總覽。"
+      },
+      foot_left: { en: "Unofficial overview · paraphrased & curated from colmweb.org", zh: "非官方整理 · 內容改寫並整理自 colmweb.org" },
+      foot_right: {
+        en: 'Source: <a href="https://colmweb.org/" target="_blank" rel="noopener">colmweb.org</a>',
+        zh: '資料來源:<a href="https://colmweb.org/" target="_blank" rel="noopener">colmweb.org</a>'
+      }
+    };
+
+    const HERO_FACTS = [
+      { k: { en: "Edition", zh: "屆次" },   v: { en: "3rd COLM", zh: "第三屆 COLM" } },
+      { k: { en: "Venue", zh: "場地" },     v: { en: "Hilton Union Square", zh: "Hilton Union Square 飯店" } },
+      { k: { en: "City", zh: "城市" },      v: { en: "San Francisco, USA", zh: "美國 舊金山" } },
+      { k: { en: "Main conf.", zh: "主會議" }, v: { en: "Oct 6–8, 2026", zh: "2026/10/06–08" } },
+      { k: { en: "Workshops", zh: "工作坊日" }, v: { en: "Oct 9, 2026", zh: "2026/10/09" } },
+      { k: { en: "Format", zh: "形式" },    v: { en: "Single-track · in-person only", zh: "單軌制 · 僅實體參與" } }
+    ];
+
+    const HERO_LINKS = [
+      { label: { en: "OpenReview", zh: "OpenReview 投稿" }, url: "https://openreview.net/group?id=colmweb.org/COLM/2026/Conference" },
+      { label: { en: "Mailing list", zh: "電子報訂閱" }, url: "https://groups.google.com/g/colm-announcements" },
+      { label: { en: "Bluesky", zh: "Bluesky" }, url: "https://bsky.app/profile/colmweb.org" },
+      { label: { en: "X / Twitter", zh: "X / Twitter" }, url: "https://x.com/COLM_conf" },
+      { label: { en: "colmweb.org", zh: "官方網站" }, url: "https://colmweb.org/" }
+    ];
+
+    // Timeline categories
+    const SITE_CATS = [
+      { key: "paper",    en: "Papers", zh: "論文" },
+      { key: "workshop", en: "Workshops", zh: "工作坊" },
+      { key: "conf",     en: "Conference", zh: "會議" }
+    ];
+
+    // Timeline events. Dates are AoE deadlines. `end` marks a range.
+    const SITE_EVENTS = [
+      {
+        slug: "openreview-opens", date: "2026-02-01", approx: true, category: "paper",
+        title: { en: "OpenReview submission opens", zh: "OpenReview 投稿系統開放" },
+        excerpt: { en: "The submission portal opens in February 2026.", zh: "投稿入口於 2026 年 2 月開放。" },
+        body: {
+          en: "Submissions are managed through OpenReview, which opens in February 2026. Anyone submitting as an author or co-author must create or update their OpenReview profile by the abstract deadline — accurate profiles are essential for handling conflicts of interest. New profiles without an institutional email go through moderation that can take up to two weeks.",
+          zh: "投稿由 OpenReview 管理,系統於 2026 年 2 月開放。所有作者與共同作者都必須在摘要截止前建立或更新 OpenReview 個人檔案——正確的檔案資訊對於處理利益衝突非常重要。使用非機構電子郵件新建的帳號需經審核,最長可能需兩週。"
+        },
+        links: [{ title: { en: "Submission portal", zh: "投稿入口" }, url: "https://openreview.net/group?id=colmweb.org/COLM/2026/Conference" }]
+      },
+      {
+        slug: "abstract-deadline", date: "2026-03-26", category: "paper",
+        title: { en: "Abstract deadline", zh: "摘要截止" },
+        excerpt: { en: "Genuine abstracts due (Thu, Mar 26). Placeholders are removed.", zh: "正式摘要截止(週四 3/26),佔位摘要將被移除。" },
+        body: {
+          en: "Paper abstracts are due by the abstract deadline (Thursday, March 26, 2026, 23:59 AoE). Abstracts must be genuine — placeholder or duplicate abstracts are removed. Avoid more-than-minor changes to your title and abstract after this point, since large edits hurt the quality of reviewer and AC assignment.",
+          zh: "論文摘要須於摘要截止日前送出(2026 年 3 月 26 日 週四,23:59 AoE)。摘要必須是正式內容——佔位或重複的摘要會被移除。此後請避免大幅修改標題與摘要,因為大改動會影響審稿人與領域主席的指派品質。"
+        }
+      },
+      {
+        slug: "paper-deadline", date: "2026-03-31", category: "paper",
+        title: { en: "Full paper deadline", zh: "完整論文截止" },
+        excerpt: { en: "Full papers due (Tue, Mar 31). 9-page main text limit.", zh: "完整論文截止(週二 3/31),正文上限 9 頁。" },
+        body: {
+          en: "The complete paper must be submitted by Tuesday, March 31, 2026 (23:59 AoE), after which edits lock except for withdrawal. Reviewing is double-blind, so no acknowledgments or identity-revealing links. Main text is capped at 9 pages with unlimited pages for references; optional ethics, reproducibility, and acknowledgment statements (≤1 page each) do not count toward the limit. Triple-check the author list — it cannot be changed after the deadline.",
+          zh: "完整論文須於 2026 年 3 月 31 日 週二(23:59 AoE)前送出,之後除撤稿外不可修改。審稿採雙盲制,因此不得含致謝或會洩漏身分的連結(如 GitHub)。正文上限 9 頁,參考文獻頁數不限;選擇性的倫理、可重現性與致謝聲明(各 ≤1 頁)不計入頁數限制。請務必再三確認作者名單——截止後無法更動。"
+        },
+        links: [{ title: { en: "LaTeX template (2026)", zh: "LaTeX 範本 (2026)" }, url: "https://github.com/COLM-org/Template/releases/tag/2026" }]
+      },
+      {
+        slug: "workshop-proposal", date: "2026-04-14", category: "workshop",
+        title: { en: "Workshop proposal deadline", zh: "工作坊提案截止" },
+        excerpt: { en: "Proposals to host a COLM workshop are due Apr 14.", zh: "申請舉辦 COLM 工作坊的提案於 4/14 截止。" },
+        body: {
+          en: "Proposals to run a workshop alongside COLM are due April 14, 2026 (23:59 AoE). Proposals run up to two pages (plus unlimited pages for organizer bios and references). COLM favors workshops that build new communities around emerging areas and that create opportunities for junior researchers and underrepresented groups. About 18 workshops are expected, all held on the final day.",
+          zh: "與 COLM 同期舉辦工作坊的提案須於 2026 年 4 月 14 日(23:59 AoE)前送出。提案正文最多兩頁(籌辦人簡介與參考文獻頁數不限)。COLM 偏好能圍繞新興領域建立社群、並為資淺研究者與弱勢群體創造機會的工作坊。預計約有 18 場工作坊,全部安排在最後一天舉行。"
+        },
+        links: [
+          { title: { en: "Call for Workshops", zh: "工作坊徵稿" }, url: "https://colmweb.org/cfw.html" },
+          { title: { en: "Proposal form", zh: "提案表單" }, url: "https://forms.gle/8w9JmbrWZzxVWt166" }
+        ]
+      },
+      {
+        slug: "workshop-decisions", date: "2026-05-12", category: "workshop",
+        title: { en: "Workshop proposal decisions", zh: "工作坊提案結果通知" },
+        excerpt: { en: "Organizers notified whether their workshop is accepted.", zh: "通知籌辦人提案是否獲選。" },
+        body: {
+          en: "Workshop organizers are notified of proposal decisions on May 12, 2026. Reviewing is done by the workshop co-chairs (except where conflicts of interest require outside reviewers), with priority on covering a diverse range of topics; highly overlapping high-quality proposals may be asked to merge.",
+          zh: "工作坊籌辦人於 2026 年 5 月 12 日收到提案審查結果。審查由工作坊共同主席負責(若有利益衝突則改由無利益關係的外部審查者),並以涵蓋多元主題為優先;若多份高品質提案主題高度重疊,可能會被要求合併。"
+        }
+      },
+      {
+        slug: "rebuttal", date: "2026-05-22", end: "2026-06-08", category: "paper",
+        title: { en: "Author rebuttal period", zh: "作者答辯期" },
+        excerpt: { en: "May 22 – Jun 8: authors respond to reviews.", zh: "5/22–6/8:作者針對審稿意見回覆。" },
+        body: {
+          en: "The rebuttal period runs from May 22 to June 8, 2026 — the window in which authors can respond to reviewer and AC comments. Reviews and author responses are not public during review; submissions are visible only to the assigned program committee. Accepted papers and their reviews are made public after decisions; rejected or withdrawn papers and their discussions are not.",
+          zh: "答辯期自 2026 年 5 月 22 日至 6 月 8 日,是作者回覆審稿人與領域主席意見的時段。審稿期間,評審意見與作者回覆不公開,投稿僅對指派的程序委員會可見。錄取論文及其評審意見會在決議後公開;遭拒或撤回的論文及其討論則不會公開。"
+        }
+      },
+      {
+        slug: "workshop-contrib", date: "2026-06-23", category: "workshop",
+        title: { en: "Workshop contributions (suggested)", zh: "工作坊投稿(建議截止)" },
+        excerpt: { en: "Suggested submission deadline for workshop papers.", zh: "工作坊論文的建議投稿截止日。" },
+        body: {
+          en: "June 23, 2026 is the suggested submission deadline for contributions to individual workshops. Workshop papers are non-archival and organizers are not required to release proceedings. Exact submission processes are set by each workshop — check the individual workshop's own call for papers.",
+          zh: "2026 年 6 月 23 日為各工作坊投稿的建議截止日。工作坊論文為非典藏(non-archival),籌辦人也不一定會發布論文集。實際投稿流程由各工作坊自訂,請參閱該工作坊自己的徵稿頁面。"
+        }
+      },
+      {
+        slug: "paper-decisions", date: "2026-07-08", category: "paper",
+        title: { en: "Paper decision notifications", zh: "論文錄取結果通知" },
+        excerpt: { en: "Accept/reject decisions for the main track.", zh: "主議程的錄取／拒絕結果。" },
+        body: {
+          en: "Main-track decision notifications go out on July 8, 2026. All accepted papers are presented as posters; a small number are selected for oral presentation, with those authors notified around mid-September. Accepted authors may add one extra page to the camera-ready to address reviewer and AC feedback.",
+          zh: "主議程的錄取結果於 2026 年 7 月 8 日通知。所有錄取論文都會以海報形式發表;其中少數會獲選為口頭報告,獲選作者約在 9 月中旬收到通知。錄取作者可在最終版(camera-ready)增加一頁,以回應審稿人與領域主席的意見。"
+        }
+      },
+      {
+        slug: "workshop-final", date: "2026-07-24", category: "workshop",
+        title: { en: "Workshop accept/reject (mandatory)", zh: "工作坊錄取／拒絕(必須完成)" },
+        excerpt: { en: "Mandatory accept/reject notice for workshop papers.", zh: "工作坊論文必須完成的錄取／拒絕通知。" },
+        body: {
+          en: "July 24, 2026 is the mandatory accept/reject notification date for workshop contributions, ensuring authors know their status well before the conference.",
+          zh: "2026 年 7 月 24 日是工作坊投稿必須完成錄取／拒絕通知的日期,確保作者在會議前充分得知結果。"
+        }
+      },
+      {
+        slug: "main-conference", date: "2026-10-06", end: "2026-10-08", category: "conf",
+        title: { en: "Main conference (Oct 6–8)", zh: "主會議(10/6–8)" },
+        excerpt: { en: "Three single-track days of talks, orals & posters.", zh: "三天單軌制:邀請演講、口頭報告與海報。" },
+        body: {
+          en: "The main conference runs October 6–8, 2026 at the Hilton Union Square in San Francisco — a single-track program of invited talks, oral paper presentations, and poster sessions. COLM is in-person only; at least one author of each accepted paper must register for the main conference (workshop registration alone does not satisfy this). Posters are 36 in (H) × 72 in (W).",
+          zh: "主會議於 2026 年 10 月 6–8 日在舊金山 Hilton Union Square 舉行,採單軌制,內容包含邀請演講、口頭論文報告與海報展示。COLM 僅限實體參與;每篇錄取論文至少須有一位作者完成主會議註冊(僅註冊工作坊不符合此要求)。海報尺寸為 36 英吋(高)× 72 英吋(寬)。"
+        }
+      },
+      {
+        slug: "workshop-day", date: "2026-10-09", category: "conf",
+        title: { en: "Workshops day (Oct 9)", zh: "工作坊日(10/9)" },
+        excerpt: { en: "Final day dedicated to ~18 workshops, 7–9 hrs each.", zh: "最後一天為約 18 場工作坊,每場 7–9 小時。" },
+        body: {
+          en: "The final day, October 9, 2026, is dedicated to workshops. All workshops run on this day and last 7–9 hours each; COLM expects to host about 18. See the Workshops section below for the full lineup.",
+          zh: "最後一天(2026 年 10 月 9 日)專屬於工作坊。所有工作坊都在這天舉行,每場 7–9 小時;COLM 預計舉辦約 18 場。完整名單請見下方「工作坊」一節。"
+        }
+      }
+    ];
+
+    // 18 accepted workshops
+    const SITE_WORKSHOPS = [
+      { title: "Workshop on Efficient Reasoning", zh: "高效推理工作坊", site: "https://wdlctc.github.io/efficient-reasoning-2026/#introduction", cfp: "https://wdlctc.github.io/efficient-reasoning-2026/#call" },
+      { title: "Workshop on Agent Behavior", zh: "代理人行為工作坊", site: "https://www.aiagentbehavior.com", cfp: "https://www.aiagentbehavior.com/#submissions" },
+      { title: "The 2nd Workshop on Lifelong Agent: Learning, Aligning, Evolving", zh: "第二屆終身學習代理人工作坊:學習、對齊與演化", site: "https://lifelongagent.github.io/", cfp: "https://lifelongagent.github.io/#submissions" },
+      { title: "Non-Autoregressive Language Models for Fast and Flexible Text Generation", zh: "非自迴歸語言模型:快速且彈性的文字生成", site: "https://pengzhangzhi.github.io/NonAR-LM/", cfp: "https://pengzhangzhi.github.io/NonAR-LM/cfp" },
+      { title: "Actionable Interpretability", zh: "可付諸行動的可解釋性", site: "https://actionable-interpretability.github.io/", cfp: "https://actionable-interpretability.github.io/cfp/" },
+      { title: "Workshop on Scientific Understanding of Foundation Models", zh: "基礎模型的科學理解工作坊", site: "https://science-ai-2026.github.io", cfp: "https://science-ai-2026.github.io/#cfp" },
+      { title: "Generative AI for the World: Globalizing Tasks, Evaluations, and Systems", zh: "面向世界的生成式 AI:任務、評測與系統的全球化(首屆)", site: "https://sites.google.com/view/genai4world/", cfp: "https://sites.google.com/view/genai4world/call-for-papers" },
+      { title: "Second Tokenization Workshop", zh: "第二屆分詞(Tokenization)工作坊", site: "https://tokenization-workshop.github.io/", cfp: "https://openreview.net/group?id=colmweb.org/COLM/2026/Workshop/TokShop" },
+      { title: "AdvML-Frontiers × CoTMA: From Model Security to Compositional Threats in Multi-Agent AI", zh: "AdvML-Frontiers × CoTMA:從模型安全到多代理 AI 的組合式威脅", site: "https://advml-frontier.github.io/", cfp: "https://advml-frontier.github.io/" },
+      { title: "LLM/VLM Deployment Opportunities and Risks in Healthcare", zh: "醫療領域中 LLM／VLM 部署的機會與風險", site: "https://daih2026.github.io/", cfp: "https://openreview.net/group?id=colmweb.org/COLM/2026/Workshop/DAIH#tab-recent-activity" },
+      { title: "Social Sim'26: Fidelity in Applications", zh: "Social Sim'26:應用中的擬真度", site: "https://sites.google.com/view/social-sims-with-llms", cfp: "https://sites.google.com/view/social-sims-with-llms/call-for-papers" },
+      { title: "Context Beyond the Window: Persistent Knowledge in Language Models", zh: "超越上下文視窗:語言模型中的持久知識", site: "https://context-beyond-window.github.io/", cfp: "https://context-beyond-window.github.io/#cfp" },
+      { title: "AI Measurement Science: Toward Rigorous AI Evaluation", zh: "AI 量測科學:邁向嚴謹的 AI 評測", site: "https://aimslab.stanford.edu/workshop", cfp: "https://aimslab.stanford.edu/workshop" },
+      { title: "2nd Workshop on Human-Centered Privacy and Security for Language Models", zh: "第二屆以人為本的語言模型隱私與安全工作坊", site: "https://haips.com", cfp: "https://haips.com/#cfp" },
+      { title: "Learning from Situated and Embodied Interaction", zh: "從情境化與具身互動中學習", site: "https://learning-situated-interaction.github.io/", cfp: "https://learning-situated-interaction.github.io/#call-for-papers" },
+      { title: "Methods and Opportunities at Small Scale (MOSS)", zh: "小規模下的方法與機會 (MOSS)", site: "https://sites.google.com/view/moss-colm-2026/", cfp: "https://sites.google.com/view/moss-colm-2026/call-for-papers?authuser=0" },
+      { title: "Workshop on Responsibly Enabling Data for Foundation Models", zh: "為基礎模型負責任地建置資料工作坊", site: "https://re-data-colm2026.github.io/", cfp: "https://re-data-colm2026.github.io/" },
+      { title: "LM4Sci 2.0: Language Models for Scientific Discovery", zh: "LM4Sci 2.0:用於科學發現的語言模型(第二屆)", site: "https://lm4sci.github.io/", cfp: "https://lm4sci.github.io/docs/2026/call-for-papers" }
+    ];
+
+    // 17 CFP topic areas
+    const SITE_TOPICS = [
+      { en: "All about training", zh: "訓練:微調、指令微調、強化學習、提示微調、in-context learning" },
+      { en: "All about data", zh: "資料:預訓練、後訓練與各階段所需的各類資料" },
+      { en: "All about evaluation", zh: "評測:基準、模擬環境、可擴展監督、評測協定與指標、偏誤評測" },
+      { en: "All about safety", zh: "安全:資安、隱私、錯誤資訊、對抗攻擊與防禦" },
+      { en: "Science of LMs", zh: "語言模型科學:scaling laws、根本限制、湧現能力、可解釋性、訓練動態" },
+      { en: "Compute-efficient LMs", zh: "高效運算:蒸餾、壓縮、量化、樣本與記憶體高效方法" },
+      { en: "Engineering for large LMs", zh: "大型 LM 工程:分散式訓練與推論、最佳化穩定性" },
+      { en: "Learning algorithms for LMs", zh: "學習演算法:SFT／RL、遺忘學習、元學習、模型混合、持續學習" },
+      { en: "Inference algorithms for LMs", zh: "推論演算法:解碼、推理、搜尋、規劃演算法" },
+      { en: "Human mind, brain, philosophy, laws & LMs", zh: "心智、大腦、哲學、法律與 LM:認知科學、神經科學、語言學等" },
+      { en: "LMs with tools and code", zh: "工具與程式:整合工具與 API、LM 驅動的軟體工程" },
+      { en: "LMs for everyone", zh: "普惠 LM:多語言、方言、低資源語言、多元文化、公平性" },
+      { en: "LMs and the world", zh: "LM 與世界:事實性、檢索增強、知識模型、常識推理、世界模型" },
+      { en: "Multimodal LMs", zh: "多模態 LM:多模態、感知、語音、時間序列等的推理與生成" },
+      { en: "LMs and embodiment", zh: "LM 與具身:感知、行動與機器人" },
+      { en: "LMs and interactions", zh: "LM 與互動:對話、互動式學習、多代理人學習" },
+      { en: "LMs on diverse domains & applications", zh: "多元領域與新應用:醫學、教育、科學等" }
+    ];
+
+    const SITE_ORGANIZERS = [
+      { name: "Yoav Artzi", role: { en: "General Chair", zh: "大會主席" }, aff: { en: "Cornell University / Google DeepMind", zh: "康乃爾大學 / Google DeepMind" }, url: "https://yoavartzi.com/" },
+      { name: "Greg Durrett", role: { en: "Senior Program Chair", zh: "資深議程主席" }, aff: { en: "New York University", zh: "紐約大學" }, url: "https://gregdurrett.github.io/" },
+      { name: "Aviral Kumar", role: { en: "Program Chair", zh: "議程主席" }, aff: { en: "CMU", zh: "卡內基美隆大學" }, url: "https://aviralkumar2907.github.io/" },
+      { name: "Yulia Tsvetkov", role: { en: "Program Chair", zh: "議程主席" }, aff: { en: "University of Washington", zh: "華盛頓大學" }, url: "https://homes.cs.washington.edu/~yuliats/" },
+      { name: "Yoon Kim", role: { en: "Program Chair", zh: "議程主席" }, aff: { en: "MIT", zh: "麻省理工學院" }, url: "https://people.csail.mit.edu/yoonkim/" },
+      { name: "Robert Hawkins", role: { en: "Workshop Chair", zh: "工作坊主席" }, aff: { en: "Stanford University", zh: "史丹佛大學" }, url: "https://rdhawkins.com/" },
+      { name: "Subhi Goel", role: { en: "Workshop Chair", zh: "工作坊主席" }, aff: { en: "UPenn", zh: "賓州大學" }, url: "https://www.surbhigoel.com/" },
+      { name: "Robin Jia", role: { en: "Community & Accessibility Chair", zh: "社群與無障礙主席" }, aff: { en: "USC", zh: "南加州大學" }, url: "https://robinjia.github.io/" },
+      { name: "Anjalie Field", role: { en: "Community & Accessibility Chair", zh: "社群與無障礙主席" }, aff: { en: "JHU", zh: "約翰霍普金斯大學" }, url: "https://anjalief.github.io/" },
+      { name: "Angelina Wang", role: { en: "Ethics Chair", zh: "倫理主席" }, aff: { en: "Cornell University", zh: "康乃爾大學" }, url: "https://angelina-wang.github.io/" },
+      { name: "Vered Shwartz", role: { en: "Ethics Chair", zh: "倫理主席" }, aff: { en: "UBC", zh: "英屬哥倫比亞大學" }, url: "https://www.cs.ubc.ca/~vshwartz/" },
+      { name: "Chris Brown", role: { en: "Organizational Chair", zh: "組織主席" }, aff: { en: "AICONS", zh: "AICONS" }, url: "mailto:chris.brown@aicons.org" }
+    ];
+
+    const SITE_BOARD = [
+      { name: "Yejin Choi", aff: { en: "University of Washington, NVIDIA", zh: "華盛頓大學、NVIDIA" }, url: "https://homes.cs.washington.edu/~yejin/" },
+      { name: "Denny Zhou", aff: { en: "Google DeepMind", zh: "Google DeepMind" }, url: "https://dennyzhou.github.io/" },
+      { name: "Danqi Chen", aff: { en: "Princeton", zh: "普林斯頓大學" }, url: "https://www.cs.princeton.edu/~danqic/" },
+      { name: "Angela Fan", aff: { en: "Meta", zh: "Meta" }, url: "https://ai.meta.com/people/angela-fan/" },
+      { name: "Alice Oh", aff: { en: "KAIST", zh: "韓國科學技術院 (KAIST)" }, url: "https://aliceoh9.github.io/" },
+      { name: "Yoav Artzi", aff: { en: "Cornell Tech, ASAPP", zh: "Cornell Tech、ASAPP" }, url: "https://yoavartzi.com/" },
+      { name: "Alexander Rush", aff: { en: "Cornell University, Anysphere", zh: "康乃爾大學、Anysphere" }, url: "https://rush-nlp.com/" },
+      { name: "Dipanjan Das", aff: { en: "Google DeepMind", zh: "Google DeepMind" }, url: "https://www.dipanjandas.com/" }
+    ];
+
+    const SITE_FAQ = [
+      { cat: { en: "Submission", zh: "投稿" },
+        q: { en: "Can I submit to COLM while my paper is under review elsewhere?", zh: "論文在其他會議審查中,可以同時投 COLM 嗎?" },
+        a: { en: "No — COLM does not allow double submissions. A full paper under review at COLM cannot be simultaneously under review elsewhere (e.g. ICML/NeurIPS), and any ARR paper at any stage counts as under submission. Double-submission checks run after the full-paper deadline on papers still under review. Concurrent submission to non-archival workshops is fine.", zh: "不行——COLM 不允許重複投稿。在 COLM 審查中的完整論文不得同時於其他會議(如 ICML／NeurIPS)審查;任何處於 ARR 流程(不論階段)的論文都算作投稿中。重複投稿檢查會在完整論文截止後,針對仍在審查的論文進行。同時投稿至非典藏工作坊則不受限。" } },
+      { cat: { en: "Submission", zh: "投稿" },
+        q: { en: "Will there be a short / position / survey paper track?", zh: "會有短文／立場論文／綜述論文的分軌嗎?" },
+        a: { en: "There is no separate short-paper track and no separate call or reviewing for position papers in 2026, opting for simplicity. There is no special survey track either, but you may submit a survey and it will be routed to appropriate area chairs and reviewers for a decision.", zh: "2026 年為求流程簡化,沒有獨立的短文分軌,也不另設立場論文的徵稿或審查。同樣沒有專門的綜述論文分軌,但你仍可投稿綜述論文,系統會將其分派給合適的領域主席與審稿人來決定。" } },
+      { cat: { en: "Submission", zh: "投稿" },
+        q: { en: "Can I edit my submission between the abstract and paper deadlines?", zh: "在摘要與完整論文截止之間可以修改投稿嗎?" },
+        a: { en: "Yes — all fields stay editable until the full-paper deadline, but keep edits minimal to avoid disrupting the program committee's work.", zh: "可以——所有欄位在完整論文截止前都可編輯,但請盡量減少修改,以免影響程序委員會的作業。" } },
+      { cat: { en: "Submission", zh: "投稿" },
+        q: { en: "What is the preprint policy?", zh: "預印本(preprint)政策為何?" },
+        a: { en: "Non-anonymous preprints (arXiv, social media, websites) are allowed. Reviewers are told not to actively search for them, and encountering one is not a conflict of interest. You may submit work that is already a preprint without citing it, but related prior published work by the authors must be cited with appropriate anonymization.", zh: "允許非匿名的預印本(arXiv、社群媒體、網站)。審稿人會被告知不主動搜尋預印本,即使看到也不構成利益衝突。你可以投稿已是預印本的研究而不引用它,但作者過去已發表的相關著作仍須引用,並做適當匿名化以維持雙盲。" } },
+      { cat: { en: "Reviewing", zh: "審稿" },
+        q: { en: "What is the reciprocal reviewing requirement?", zh: "互惠審稿(reciprocal reviewing)要求是什麼?" },
+        a: { en: "There are two requirements. Per-submission: each submission is expected to contribute a reviewer (the form lets you designate one or mark an exemption). Per-reviewer: any author on 4+ submissions is automatically added to the reviewer pool unless already on the program committee or organization. The aim is to scale the reviewer pool with submission volume.", zh: "有兩項要求。每篇投稿:每篇論文須貢獻一位審稿人(表單可指定一位,或標記為豁免)。每位作者:在 4 篇以上投稿掛名的作者會自動被加入審稿池,除非已是程序委員會或組織成員。目的是讓審稿人數量隨投稿量擴充。" } },
+      { cat: { en: "Reviewing", zh: "審稿" },
+        q: { en: "What qualifications are required to review?", zh: "擔任審稿人需要什麼資格?" },
+        a: { en: "Reviewers should have research experience equivalent to a second-year ML grad student and have been a primary author on at least two peer-reviewed papers at related venues (e.g. ACL, EMNLP, ICML, NeurIPS, ICLR, etc.). First-time reviewers are strongly encouraged to find a qualified, experienced mentor.", zh: "審稿人應具備相當於機器學習領域二年級研究生的研究經驗,並曾在相關會議(如 ACL、EMNLP、ICML、NeurIPS、ICLR 等)以主要作者身分發表至少兩篇同儕審查論文。強烈建議首次審稿者尋找具資格與經驗的指導者(mentor)從旁協助。" } },
+      { cat: { en: "Reviewing", zh: "審稿" },
+        q: { en: "What is the expected reviewing load?", zh: "預期的審稿量是多少?" },
+        a: { en: "Up to about 5 papers per reviewer.", zh: "每位審稿人最多約 5 篇論文。" } },
+      { cat: { en: "Presentation", zh: "發表" },
+        q: { en: "Posters or oral presentations? And poster size?", zh: "是海報還是口頭報告?海報尺寸多大?" },
+        a: { en: "All papers are presented as posters; a small number are selected for orals (authors notified around mid-September). Posters are 36 in (H) × 72 in (W).", zh: "所有論文皆以海報發表;少數會獲選為口頭報告(作者約於 9 月中旬收到通知)。海報尺寸為 36 英吋(高)× 72 英吋(寬)。" } },
+      { cat: { en: "Presentation", zh: "發表" },
+        q: { en: "Can I present remotely or have someone hang my poster?", zh: "可以遠距報告,或請人代為張貼海報嗎?" },
+        a: { en: "No remote presentation, and the conference cannot place your poster for you. COLM is in-person only and submission entails a responsibility to present. If you truly cannot attend, the recommended option is to find a colleague who is attending to present on your behalf.", zh: "不提供遠距報告,大會也無法代為張貼海報。COLM 僅限實體參與,投稿即代表負有到場發表的責任。若你確實無法出席,建議的做法是請一位會出席的同事代為報告。" } },
+      { cat: { en: "Attending", zh: "與會" },
+        q: { en: "Is there an author registration requirement?", zh: "有作者註冊要求嗎?" },
+        a: { en: "At least one author of each accepted paper must register for the main conference (workshop-only registration does not count). Students need only a student registration, and one registration covers an author even with multiple accepted papers.", zh: "每篇錄取論文至少須有一位作者完成主會議註冊(僅註冊工作坊不算)。學生只需學生註冊即可;即使一位作者有多篇錄取論文,也只需一次註冊。" } },
+      { cat: { en: "Attending", zh: "與會" },
+        q: { en: "Do postdocs / recent grads qualify for the student rate?", zh: "博士後／剛畢業者適用學生費率嗎?" },
+        a: { en: "If you are a recent graduate publishing under your student affiliation, register as a Student. Other non-industry researchers — including postdocs, faculty, and independent researchers — should register as Academic.", zh: "若你是剛畢業、以學生身分(affiliation)發表者,請以「學生」註冊。其他非業界研究者——包含博士後、教職與獨立研究者——應以「學術」身分註冊。" } },
+      { cat: { en: "Attending", zh: "與會" },
+        q: { en: "Is there a virtual option? How do I get a visa letter?", zh: "有線上參與選項嗎?如何取得簽證邀請函?" },
+        a: { en: "COLM is in-person only, with no virtual attendance option. Upon registration you can download an invitation letter for visa purposes.", zh: "COLM 僅限實體參與,沒有線上參與選項。完成註冊後,你可下載供簽證使用的邀請函。" } },
+      { cat: { en: "Conference", zh: "會議" },
+        q: { en: "Is COLM archival?", zh: "COLM 是典藏會議嗎?" },
+        a: { en: "Yes, COLM is an archival venue. You may also submit to non-archival venues, but not to other archival venues.", zh: "是的,COLM 為典藏(archival)會議。你可以另外投稿至非典藏的場合,但不得投稿至其他典藏會議。" } },
+      { cat: { en: "Other", zh: "其他" },
+        q: { en: "How do you pronounce COLM?", zh: "COLM 怎麼念?" },
+        a: { en: "Like 'Collum', after the Irish name Colm — which means dove.", zh: "念作「Collum」,取自愛爾蘭名字 Colm——意思是鴿子。" } }
+    ];
+
+    const SITE_GUIDES = [
+      { t: { en: "Call for Papers", zh: "論文徵稿 (CFP)" }, url: "https://colmweb.org/cfp.html",
+        d: { en: "Scope, 17 topic areas, double-blind review process, ethics review, page limits and templates.", zh: "徵稿範圍、17 大主題、雙盲審查流程、倫理審查、頁數限制與範本。" } },
+      { t: { en: "Call for Workshops", zh: "工作坊徵稿 (CFW)" }, url: "https://colmweb.org/cfw.html",
+        d: { en: "How to propose a workshop: scope, logistics, proposal format, and reviewing criteria.", zh: "如何提案工作坊:範圍、後勤安排、提案格式與審查標準。" } },
+      { t: { en: "Code of Conduct", zh: "行為準則" }, url: "https://colmweb.org/CoC.html",
+        d: { en: "Conduct expected of all participants; required acknowledgment before participating.", zh: "所有與會者應遵守的行為規範;參與前須確認同意。" } },
+      { t: { en: "Code of Ethics", zh: "倫理準則" }, url: "https://colmweb.org/CoE.html",
+        d: { en: "Ethical standards binding on the whole submission and reviewing process.", zh: "對整個投稿與審查流程具約束力的倫理標準。" } },
+      { t: { en: "Review Guidelines", zh: "審稿指引" }, url: "https://colmweb.org/ReviewGuide.html",
+        d: { en: "Guidance reviewers and area chairs are asked to follow.", zh: "審稿人與領域主席應遵循的指引。" } },
+      { t: { en: "AC Guidelines", zh: "領域主席指引" }, url: "https://colmweb.org/ac-guidelines.html",
+        d: { en: "Expectations and responsibilities for area chairs.", zh: "對領域主席(AC)的期待與職責。" } },
+      { t: { en: "Submission Instructions", zh: "投稿說明" }, url: "https://colmweb.org/submission-instructions.html",
+        d: { en: "Step-by-step instructions for preparing and submitting your paper.", zh: "準備與送出論文的逐步說明。" } },
+      { t: { en: "Author Guide", zh: "作者指南" }, url: "https://colmweb.org/AuthorGuide.html",
+        d: { en: "Guidance authors are expected to follow throughout the process.", zh: "作者在整個流程中應遵循的指引。" } },
+      { t: { en: "COI Policy", zh: "利益衝突政策" }, url: "https://colmweb.org/coi-policy.html",
+        d: { en: "How conflicts of interest are defined and handled via OpenReview profiles.", zh: "利益衝突的定義,以及如何透過 OpenReview 檔案處理。" } },
+      { t: { en: "LLM Usage Policy", zh: "大型語言模型使用政策" }, url: "https://colmweb.org/cfp.html",
+        d: { en: "Adopts ICLR 2026's policy: substantive LLM use in research must be disclosed (ideation, original writing, data/plots, evaluation); minor copy-editing or coding assistance need not be. Any LLM use in reviewing must be disclosed. Authors and reviewers remain responsible for their contributions.", zh: "採用 ICLR 2026 政策:研究中實質使用 LLM(發想點子、撰寫原創內容、生成資料或圖表、用於評測)須揭露;僅做小幅文字潤飾或程式輔助則不需。審稿中任何 LLM 使用都須揭露。作者與審稿人對自身貢獻負最終責任。" } }
+    ];
+  </script>
+
+  <!-- ===================== APP ===================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      var META = SITE_META, EVENTS = SITE_EVENTS, CATS = SITE_CATS;
+      var store = {
+        get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+        set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+      };
+
+      var I18N = {
+        en: {
+          brandSub: META.brandSub.en, kicker: META.kicker.en, lead: META.lead.en,
+          heroTitle: "Conference on<br>Language Modeling",
+          foot_left: META.foot_left.en, foot_right: META.foot_right.en,
+          search: "Filter everything — dates, workshops, topics, people, FAQ…",
+          all: "All", empty: "No matches.",
+          s_timeline: "Timeline", s_timeline_note: "Status is live, relative to today",
+          s_workshops: "Workshops", s_topics: "Topics of Interest", s_topics_note: "17 areas · LM in the broadest sense",
+          s_people: "Organization", s_faq: "FAQ", s_guides: "Guides & Policies", s_guides_note: "Links to official documents",
+          g_org: "Organizing Committee", g_board: "COLM Board",
+          nav: { timeline: "Timeline", workshops: "Workshops", topics: "Topics", people: "Organization", faq: "FAQ", guides: "Guides" },
+          status: { done: "Past", now: "Ongoing", next: "Up next", upcoming: "Upcoming" },
+          cnt: function (n) { return n + " result" + (n === 1 ? "" : "s"); },
+          wsCnt: function (n) { return n + " workshops"; },
+          faqCnt: function (n) { return n + " questions"; },
+          pplCnt: function (n) { return n + " people"; }
+        },
+        zh: {
+          brandSub: META.brandSub.zh, kicker: META.kicker.zh, lead: META.lead.zh,
+          heroTitle: "語言模型<br>會議",
+          foot_left: META.foot_left.zh, foot_right: META.foot_right.zh,
+          search: "篩選全部內容 — 時程、工作坊、主題、組織、FAQ…",
+          all: "全部", empty: "沒有符合的結果。",
+          s_timeline: "重要時程", s_timeline_note: "狀態依今日即時計算",
+          s_workshops: "工作坊", s_topics: "徵稿主題", s_topics_note: "17 大主題 · 廣義的語言模型",
+          s_people: "組織", s_faq: "常見問題", s_guides: "指南與政策", s_guides_note: "官方文件連結",
+          g_org: "籌辦委員會", g_board: "COLM 理事會",
+          nav: { timeline: "時程", workshops: "工作坊", topics: "主題", people: "組織", faq: "問答", guides: "指南" },
+          status: { done: "已結束", now: "進行中", next: "下一步", upcoming: "尚未開始" },
+          cnt: function (n) { return "共 " + n + " 筆結果"; },
+          wsCnt: function (n) { return n + " 場工作坊"; },
+          faqCnt: function (n) { return n + " 個問題"; },
+          pplCnt: function (n) { return n + " 位成員"; }
+        }
+      };
+
+      var state = {
+        lang:  store.get("lang")  || "zh",
+        theme: store.get("theme") || "light",
+        search: "", category: "all"
+      };
+
+      var $ = function (id) { return document.getElementById(id); };
+      var dialog = $("dialog"), dialogBody = $("dialogBody");
+
+      function t(o) { if (o == null) return ""; if (typeof o === "string") return o; return o[state.lang] || o.en || o.zh || ""; }
+      function ui(k) { return (I18N[state.lang] || I18N.en)[k]; }
+      function catLabel(key) { var c = CATS.find(function (x) { return x.key === key; }); return c ? (c[state.lang] || c.en) : key; }
+      function escapeHtml(s) { return String(s).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+      function norm(s) { return String(s || "").toLowerCase(); }
+
+      var MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+      function parseDate(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+
+      /* ---- status relative to today ---- */
+      var NOW = new Date();
+      // find the next upcoming event (earliest start strictly in the future)
+      var nextSlug = (function () {
+        var best = null;
+        EVENTS.forEach(function (e) {
+          var start = parseDate(e.date);
+          if (start > NOW && (!best || start < parseDate(best.date))) best = e;
+        });
+        return best ? best.slug : null;
+      })();
+      function statusOf(e) {
+        var start = parseDate(e.date);
+        var end = e.end ? parseDate(e.end) : start;
+        // treat deadline day as inclusive
+        var endIncl = new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59);
+        if (NOW > endIncl) return "done";
+        if (NOW >= start && NOW <= endIncl) return "now";
+        if (e.slug === nextSlug) return "next";
+        return "upcoming";
+      }
+
+      /* ---- hero ---- */
+      function renderHero() {
+        $("heroMeta").innerHTML = HERO_FACTS.map(function (f) {
+          return '<div class="fact"><p class="fact__k mono">' + escapeHtml(t(f.k)) +
+            '</p><p class="fact__v">' + escapeHtml(t(f.v)) + '</p></div>';
+        }).join("");
+        $("heroLinks").innerHTML = HERO_LINKS.map(function (l) {
+          return '<a class="linkpill" href="' + escapeHtml(l.url) + '" target="_blank" rel="noopener">' + escapeHtml(t(l.label)) + '</a>';
+        }).join("");
+      }
+
+      /* ---- nav ---- */
+      var NAV_IDS = ["timeline","workshops","topics","people","faq","guides"];
+      function renderNav() {
+        $("nav").innerHTML = NAV_IDS.map(function (id) {
+          return '<a href="#sec-' + id + '" data-nav="' + id + '">' + escapeHtml(ui("nav")[id]) + '</a>';
+        }).join("");
+      }
+
+      /* ---- timeline ---- */
+      function eventHay(e) { return [t(e.title), t(e.excerpt), t(e.body), catLabel(e.category), e.date].join(" "); }
+      function renderTimeline() {
+        var q = norm(state.search);
+        var visible = EVENTS.filter(function (e) {
+          if (state.category !== "all" && e.category !== state.category) return false;
+          if (q && norm(eventHay(e)).indexOf(q) === -1) return false;
+          return true;
+        });
+        var host = $("timeline"); host.innerHTML = "";
+        visible.forEach(function (e) {
+          var d = parseDate(e.date), st = statusOf(e);
+          var row = document.createElement("article");
+          row.className = "tl-row card"; row.dataset.status = st; row.dataset.slug = e.slug; row.dataset.item = e.slug; row.tabIndex = 0;
+          var dayTxt = e.approx ? "~" : ("0" + d.getDate()).slice(-2);
+          var monTxt = MONTHS[d.getMonth()];
+          if (e.end) { var em = parseDate(e.end).getMonth(); if (em !== d.getMonth()) monTxt += "–" + MONTHS[em]; }
+          var statusTxt = ui("status")[st];
+          row.innerHTML =
+            '<div class="tl-date"><div class="d">' + dayTxt + '</div>' +
+              '<div class="m">' + monTxt + '</div>' +
+              '<div class="y">' + d.getFullYear() + '</div></div>' +
+            '<div class="tl-body">' +
+              '<div class="tl-tags">' +
+                '<span class="tag tag--cat">' + escapeHtml(catLabel(e.category)) + '</span>' +
+                '<span class="status status--' + st + '">' + escapeHtml(statusTxt) + '</span>' +
+              '</div>' +
+              '<h3 class="tl-title">' + escapeHtml(t(e.title)) + '</h3>' +
+              '<p class="tl-excerpt">' + escapeHtml(t(e.excerpt)) + '</p>' +
+            '</div>';
+          row.addEventListener("click", function () { openDialog(e.slug); });
+          row.addEventListener("keydown", function (ev) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openDialog(e.slug); } });
+          host.appendChild(row);
+        });
+        $("tlEmpty").hidden = visible.length !== 0;
+        $("tlEmpty").textContent = ui("empty");
+        return visible.length;
+      }
+
+      /* ---- workshops ---- */
+      function renderWorkshops() {
+        var q = norm(state.search);
+        var vis = SITE_WORKSHOPS.filter(function (w) { return !q || norm(w.title + " " + w.zh).indexOf(q) !== -1; });
+        var host = $("workshops"); host.innerHTML = "";
+        vis.forEach(function (w, i) {
+          var el = document.createElement("div"); el.className = "ws";
+          el.innerHTML =
+            '<span class="ws__n">W' + ("0" + (i + 1)).slice(-2) + '</span>' +
+            '<div class="ws__title">' + escapeHtml(w.title) + '</div>' +
+            '<div class="ws__zh">' + escapeHtml(w.zh) + '</div>' +
+            '<div class="ws__links">' +
+              '<a href="' + escapeHtml(w.site) + '" target="_blank" rel="noopener">' + (state.lang === "zh" ? "網站" : "Site") + '</a>' +
+              (w.cfp ? '<a href="' + escapeHtml(w.cfp) + '" target="_blank" rel="noopener">' + (state.lang === "zh" ? "徵稿" : "CFP") + '</a>' : '') +
+            '</div>';
+          host.appendChild(el);
+        });
+        $("wsEmpty").hidden = vis.length !== 0; $("wsEmpty").textContent = ui("empty");
+        $("wsNote").textContent = ui("wsCnt")(vis.length);
+        return vis.length;
+      }
+
+      /* ---- topics ---- */
+      function renderTopics() {
+        var q = norm(state.search);
+        var vis = SITE_TOPICS.filter(function (tp) { return !q || norm(tp.en + " " + tp.zh).indexOf(q) !== -1; });
+        var host = $("topics"); host.innerHTML = "";
+        vis.forEach(function (tp, i) {
+          var el = document.createElement("div"); el.className = "topic";
+          el.innerHTML =
+            '<span class="topic__n">' + ("0" + (i + 1)).slice(-2) + '</span>' +
+            '<div class="topic__t"><span class="en">' + escapeHtml(tp.en) + '</span>' +
+              '<span class="zh">' + escapeHtml(tp.zh) + '</span></div>';
+          host.appendChild(el);
+        });
+        $("topEmpty").hidden = vis.length !== 0; $("topEmpty").textContent = ui("empty");
+        return vis.length;
+      }
+
+      /* ---- people ---- */
+      function personCard(p, withRole) {
+        var nameHtml = p.url ? '<a href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener">' + escapeHtml(p.name) + ' ↗</a>' : escapeHtml(p.name);
+        return '<div class="person">' +
+          (withRole ? '<span class="person__role">' + escapeHtml(t(p.role)) + '</span>' : '') +
+          '<span class="person__name">' + nameHtml + '</span>' +
+          '<span class="person__aff">' + escapeHtml(t(p.aff)) + '</span></div>';
+      }
+      function personHay(p) { return p.name + " " + t(p.aff) + " " + (p.role ? t(p.role) : ""); }
+      function renderPeople() {
+        var q = norm(state.search);
+        var orgs = SITE_ORGANIZERS.filter(function (p) { return !q || norm(personHay(p)).indexOf(q) !== -1; });
+        var board = SITE_BOARD.filter(function (p) { return !q || norm(personHay(p)).indexOf(q) !== -1; });
+        $("organizers").innerHTML = orgs.map(function (p) { return personCard(p, true); }).join("");
+        $("board").innerHTML = board.map(function (p) { return personCard(p, false); }).join("");
+        var total = orgs.length + board.length;
+        $("pplEmpty").hidden = total !== 0; $("pplEmpty").textContent = ui("empty");
+        $("peopleNote").textContent = ui("pplCnt")(total);
+        return total;
+      }
+
+      /* ---- faq ---- */
+      function renderFAQ() {
+        var q = norm(state.search);
+        var vis = SITE_FAQ.filter(function (f) { return !q || norm(t(f.q) + " " + t(f.a) + " " + t(f.cat)).indexOf(q) !== -1; });
+        var host = $("faq"); host.innerHTML = "";
+        vis.forEach(function (f, i) {
+          var item = document.createElement("div"); item.className = "qa"; item.setAttribute("aria-expanded", "false");
+          item.innerHTML =
+            '<button class="qa__q" type="button">' +
+              '<span class="mk mono">[' + ("0" + (i + 1)).slice(-2) + ']</span>' +
+              '<span>' + escapeHtml(t(f.q)) + '<span class="qa__cat mono">' + escapeHtml(t(f.cat)) + '</span></span>' +
+            '</button>' +
+            '<div class="qa__a">' + escapeHtml(t(f.a)) + '</div>';
+          item.querySelector(".qa__q").addEventListener("click", function () {
+            item.setAttribute("aria-expanded", item.getAttribute("aria-expanded") === "true" ? "false" : "true");
+          });
+          host.appendChild(item);
+        });
+        $("faqEmpty").hidden = vis.length !== 0; $("faqEmpty").textContent = ui("empty");
+        $("faqNote").textContent = ui("faqCnt")(vis.length);
+        return vis.length;
+      }
+
+      /* ---- guides ---- */
+      function renderGuides() {
+        var q = norm(state.search);
+        var vis = SITE_GUIDES.filter(function (g) { return !q || norm(t(g.t) + " " + t(g.d)).indexOf(q) !== -1; });
+        var host = $("guides"); host.innerHTML = "";
+        vis.forEach(function (g) {
+          var el = document.createElement("div"); el.className = "guide";
+          el.innerHTML =
+            '<a class="guide__t" href="' + escapeHtml(g.url) + '" target="_blank" rel="noopener">' + escapeHtml(t(g.t)) + ' ↗</a>' +
+            '<p class="guide__d">' + escapeHtml(t(g.d)) + '</p>';
+          host.appendChild(el);
+        });
+        $("guideEmpty").hidden = vis.length !== 0; $("guideEmpty").textContent = ui("empty");
+        return vis.length;
+      }
+
+      /* ---- chips ---- */
+      function buildChips() {
+        var host = $("chips"); host.innerHTML = "";
+        ["all"].concat(CATS.map(function (c) { return c.key; })).forEach(function (key) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "chip"; b.dataset.cat = key;
+          b.textContent = key === "all" ? ui("all") : catLabel(key);
+          b.setAttribute("aria-pressed", String(state.category === key));
+          b.addEventListener("click", function () { state.category = key; syncChips(); render(); });
+          host.appendChild(b);
+        });
+      }
+      function syncChips() {
+        [].forEach.call($("chips").children, function (b) { b.setAttribute("aria-pressed", String(b.dataset.cat === state.category)); });
+      }
+
+      /* ---- section show/hide under search ---- */
+      function setSection(id, count) {
+        var hasSearch = !!state.search;
+        // timeline never hidden by search alone (it has its own empty state + chips)
+        if (id === "timeline") { $("sec-timeline").hidden = false; return; }
+        $("sec-" + id).hidden = hasSearch && count === 0;
+      }
+
+      /* ---- master render ---- */
+      function render() {
+        var counts = {
+          timeline: renderTimeline(),
+          workshops: renderWorkshops(),
+          topics: renderTopics(),
+          people: renderPeople(),
+          faq: renderFAQ(),
+          guides: renderGuides()
+        };
+        NAV_IDS.forEach(function (id) { setSection(id, counts[id]); });
+        var total = counts.timeline + counts.workshops + counts.topics + counts.people + counts.faq + counts.guides;
+        $("searchCount").textContent = state.search ? ui("cnt")(total) : "";
+        // hide nav links whose section is hidden
+        [].forEach.call($("nav").children, function (a) {
+          var id = a.dataset.nav;
+          a.style.display = $("sec-" + id).hidden ? "none" : "";
+        });
+      }
+
+      /* ---- dialog ---- */
+      function visibleEvents() {
+        var q = norm(state.search);
+        return EVENTS.filter(function (e) {
+          if (state.category !== "all" && e.category !== state.category) return false;
+          if (q && norm(eventHay(e)).indexOf(q) === -1) return false;
+          return true;
+        });
+      }
+      function openDialog(slug) {
+        var e = EVENTS.find(function (x) { return x.slug === slug; });
+        if (!e) return;
+        var d = parseDate(e.date), st = statusOf(e);
+        var dateStr = e.approx ? (state.lang === "zh" ? "約 " : "~") : "";
+        dateStr += MONTHS[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+        if (e.end) { var de = parseDate(e.end); dateStr = MONTHS[d.getMonth()] + " " + d.getDate() + " – " + MONTHS[de.getMonth()] + " " + de.getDate() + ", " + de.getFullYear(); }
+        var links = (e.links || []).map(function (l) {
+          return '<li><a href="' + escapeHtml(l.url) + '" target="_blank" rel="noopener">' + escapeHtml(t(l.title)) + '</a></li>';
+        }).join("");
+        dialogBody.innerHTML =
+          '<div class="dialog__tags">' +
+            '<span class="tag tag--cat">' + escapeHtml(catLabel(e.category)) + '</span>' +
+            '<span class="status status--' + st + '">' + escapeHtml(ui("status")[st]) + '</span>' +
+          '</div>' +
+          '<p class="dialog__date mono">' + escapeHtml(dateStr) + '</p>' +
+          '<h2>' + escapeHtml(t(e.title)) + '</h2>' +
+          '<p>' + escapeHtml(t(e.body)) + '</p>' +
+          (links ? '<ul class="dialog__links">' + links + '</ul>' : '');
+        if (!dialog.open) dialog.showModal();
+        if (location.hash.slice(1) !== slug) { try { history.replaceState(null, "", "#" + slug); } catch (e2) {} }
+      }
+      function closeDialog() { if (dialog.open) dialog.close(); clearHash(); }
+      function clearHash() { if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} } }
+      function navBy(delta) {
+        var vis = visibleEvents();
+        var slug = location.hash.slice(1);
+        var idx = vis.findIndex(function (e) { return e.slug === slug; });
+        if (idx === -1) return;
+        var next = vis[(idx + delta + vis.length) % vis.length];
+        if (next) openDialog(next.slug);
+      }
+
+      /* ---- theme + lang ---- */
+      function applyTheme() {
+        document.documentElement.setAttribute("data-theme", state.theme);
+        $("themeLabel").textContent = state.theme === "dark" ? "LIGHT" : "DARK";
+        store.set("theme", state.theme);
+      }
+      function applyStatic() {
+        document.documentElement.setAttribute("lang", state.lang === "zh" ? "zh-Hant" : "en");
+        store.set("lang", state.lang);
+        $("langLabel").textContent = state.lang === "en" ? "中" : "EN";
+        document.title = state.lang === "zh" ? "COLM 2026 · 語言模型會議" : "COLM 2026 · Conference on Language Modeling";
+        $("searchInput").placeholder = ui("search");
+        [].forEach.call(document.querySelectorAll("[data-i18n],[data-i18n-html]"), function (el) {
+          var html = el.hasAttribute("data-i18n-html");
+          var key = el.getAttribute(html ? "data-i18n-html" : "data-i18n");
+          var dict = I18N[state.lang] || I18N.en;
+          if (dict[key] == null) return;
+          if (html) el.innerHTML = dict[key]; else el.textContent = dict[key];
+        });
+      }
+
+      /* ---- scroll spy ---- */
+      function setupSpy() {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              var id = en.target.id.replace("sec-", "");
+              [].forEach.call($("nav").children, function (a) { a.classList.toggle("active", a.dataset.nav === id); });
+            }
+          });
+        }, { rootMargin: "-110px 0px -70% 0px" });
+        NAV_IDS.forEach(function (id) { var el = $("sec-" + id); if (el) obs.observe(el); });
+      }
+
+      function wire() {
+        $("searchInput").addEventListener("input", function (e) { state.search = e.target.value.trim(); render(); });
+        $("themeToggle").addEventListener("click", function () { state.theme = state.theme === "dark" ? "light" : "dark"; applyTheme(); });
+        $("langToggle").addEventListener("click", function () {
+          state.lang = state.lang === "en" ? "zh" : "en";
+          applyStatic(); renderHero(); renderNav(); buildChips(); render();
+          var open = location.hash.slice(1);
+          if (dialog.open && open) openDialog(open);
+        });
+        $("dialogClose").addEventListener("click", closeDialog);
+        $("navPrev").addEventListener("click", function () { navBy(-1); });
+        $("navNext").addEventListener("click", function () { navBy(1); });
+        dialog.addEventListener("click", function (e) { if (e.target === dialog) closeDialog(); });
+        dialog.addEventListener("close", clearHash);
+        document.addEventListener("keydown", function (e) {
+          if (!dialog.open) return;
+          if (e.key === "ArrowRight") navBy(1); else if (e.key === "ArrowLeft") navBy(-1);
+        });
+        window.addEventListener("hashchange", syncFromHash);
+      }
+      function syncFromHash() {
+        var slug = location.hash.slice(1);
+        if (slug && EVENTS.some(function (e) { return e.slug === slug; })) openDialog(slug);
+        else if (!slug && dialog.open) dialog.close();
+      }
+
+      function init() {
+        applyTheme(); applyStatic(); renderHero(); renderNav(); buildChips(); render(); wire(); setupSpy(); syncFromHash();
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+      else init();
+    })();
+  </script>
 </body>
 </html>
