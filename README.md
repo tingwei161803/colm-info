@@ -3,8 +3,8 @@
 把 [Conference on Language Modeling (COLM) 2026](https://colmweb.org/) 官網的內容,整理成**複合多區段、學術簡潔風、雙語、零 build** 的單頁互動網站。
 
 > 🌐 **線上版(兩種設計,挑你喜歡的)**
-> - **學術簡潔 · 複合多區段(主頁)** → <https://tingwei161803.github.io/colm-info/>
-> - **`colm2026.html`(深紫 · 單檔設計)** → <https://tingwei161803.github.io/colm-info/colm2026.html>
+> - **學術簡潔 · 複合多區段(主頁)** → <https://colm-info.peteraim.com/>
+> - **`colm2026.html`(深紫 · 單檔設計)** → <https://colm-info.peteraim.com/colm2026.html>
 
 COLM 是聚焦於「廣義語言建模」的學術會議,2026 年 10 月 6–9 日於**美國舊金山 Hilton Union Square** 舉行。本頁把官網的重要日期、徵稿主題、工作坊、組織成員、FAQ 與政策,整併成**一頁多區段**:hero 統計 → 關於 → 時間軸 → 主題 → 工作坊 → 組織 → FAQ → 指南/政策 → CTA,搭配 sticky 區段導覽與 scrollspy。
 
@@ -49,11 +49,11 @@ colm-info/
 
 | 版本 | 版型 / 風格 | 位置 |
 |------|------------|------|
-| **v4(目前主頁)** | **composite** 複合多區段 · 學術簡潔 | [`/`](https://tingwei161803.github.io/colm-info/) |
-| `colm2026.html` | 單檔 · 深紫 Space Grotesk 設計 | [`/colm2026.html`](https://tingwei161803.github.io/colm-info/colm2026.html) |
-| v3 | **timeline** 互動時間軸 · 工業風 | [`/archive/v3/`](https://tingwei161803.github.io/colm-info/archive/v3/) |
-| v2 | **faq** 知識庫手風琴 · 學術簡潔 | [`/archive/v2/`](https://tingwei161803.github.io/colm-info/archive/v2/) |
-| v1 | **gallery** 卡片 + modal | [`/archive/v1/`](https://tingwei161803.github.io/colm-info/archive/v1/) |
+| **v4(目前主頁)** | **composite** 複合多區段 · 學術簡潔 | [`/`](https://colm-info.peteraim.com/) |
+| `colm2026.html` | 單檔 · 深紫 Space Grotesk 設計 | [`/colm2026.html`](https://colm-info.peteraim.com/colm2026.html) |
+| v3 | **timeline** 互動時間軸 · 工業風 | [`/archive/v3/`](https://colm-info.peteraim.com/archive/v3/) |
+| v2 | **faq** 知識庫手風琴 · 學術簡潔 | [`/archive/v2/`](https://colm-info.peteraim.com/archive/v2/) |
+| v1 | **gallery** 卡片 + modal | [`/archive/v1/`](https://colm-info.peteraim.com/archive/v1/) |
 
 ### 資料來源
 
