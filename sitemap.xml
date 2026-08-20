@@ -2,21 +2,15 @@
 <!--
   本站自己的 sitemap。刻意不寫 <lastmod>:沒有可信的「內容最後修改時間」
   來源(git commit 時間不等於內容變動時間),給錯的 lastmod 比不給更糟。
+
+  只列現行的兩個版本。archive/ 底下是舊版設計的封存,內容與主站重複,
+  canonical 已指向主站,不列進 sitemap——避免同一份內容多個網址互相稀釋。
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://colm-info.peteraim.com/archive/v1/</loc>
-  </url>
-  <url>
-    <loc>https://colm-info.peteraim.com/archive/v2/</loc>
-  </url>
-  <url>
-    <loc>https://colm-info.peteraim.com/archive/v3/</loc>
+    <loc>https://colm-info.peteraim.com/</loc>
   </url>
   <url>
     <loc>https://colm-info.peteraim.com/colm2026.html</loc>
-  </url>
-  <url>
-    <loc>https://colm-info.peteraim.com/</loc>
   </url>
 </urlset>
