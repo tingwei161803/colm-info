@@ -1,5 +1,5 @@
 /* =========================================================================
-   lazy-data2web · app.js · FAQ / accordion layout  (vanilla, no build)
+   app.js · FAQ / accordion layout  (vanilla, no build)
    Reads:
      window.SITE_META       -> { title:{en,zh}, subtitle:{en,zh} }
      window.SITE_CATEGORIES -> [{ key, en, zh }]            (optional)
@@ -23,12 +23,12 @@
           all: "All", expandAll: "Expand all", collapseAll: "Collapse all",
           count: "{n} entries", countOne: "1 entry",
           links: "Links", eyebrow: "Conference on Language Modeling · Knowledge Base", "footer.source": "Source",
-          footer: "Unofficial mirror of colmweb.org · built with lazy-data2web · static, no build step." },
+          footer: "Unofficial mirror of colmweb.org · static, no build step." },
     zh: { brand: "COLM 2026", search: "搜尋日期、政策、人員⋯⋯", empty: "沒有符合的項目。換個關鍵字或篩選條件試試。",
           all: "全部", expandAll: "全部展開", collapseAll: "全部收合",
           count: "{n} 筆", countOne: "1 筆",
           links: "相關連結", eyebrow: "語言建模研討會 · 知識庫", "footer.source": "資料來源",
-          footer: "colmweb.org 非官方鏡像 · 以 lazy-data2web 建置 · 純靜態,無建置流程。" }
+          footer: "colmweb.org 非官方鏡像 · 純靜態,無建置流程。" }
   };
 
   /* ---------- global state ---------- */

@@ -76,8 +76,9 @@ uv run python -m http.server 4173   # 然後開 http://localhost:4173
 
 ```bash
 uv run --with playwright playwright install chromium
-uv run --with playwright python <lazy-data2web>/scripts/verify.py --dir .
 ```
+
+搭配自訂的 Playwright 腳本可跑基本檢查(頁面載入、雙語切換、深淺色模式、RWD 等)。
 
 ---
 
@@ -85,4 +86,4 @@ uv run --with playwright python <lazy-data2web>/scripts/verify.py --dir .
 
 本網站為**非官方、由社群製作**的 COLM 2026 整理頁,並非主辦單位官方產物。所有內容版權屬 **COLM 主辦單位**;**最新與權威資訊請以官方網站 [colmweb.org](https://colmweb.org/) 為準**。
 
-以 lazy-data2web 工作流製作 · 零 build 靜態 HTML/CSS/JS。
+零 build 靜態 HTML/CSS/JS。
