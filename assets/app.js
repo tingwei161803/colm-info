@@ -1,5 +1,5 @@
 /* =========================================================================
-   lazy-data2web · composite · app.js  (vanilla, no build, no chart lib)
+   composite · app.js  (vanilla, no build, no chart lib)
 
    A single long page assembled from an ordered list of typed section-blocks.
    The whole page is config-driven:
@@ -27,9 +27,9 @@
 
   /* ---------- i18n strings (UI chrome only) ---------- */
   var I18N = {
-    en: { footer: "Built with lazy-data2web · static, no build step.",
+    en: { footer: "Static, no build step.",
           close: "Close", menu: "On this page" },
-    zh: { footer: "使用 lazy-data2web 建置 · 純靜態,無建置流程。",
+    zh: { footer: "純靜態,無建置流程。",
           close: "關閉", menu: "本頁導覽" }
   };
 
