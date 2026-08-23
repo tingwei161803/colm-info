@@ -283,7 +283,7 @@
     </a>
     <nav class="nav" id="nav" aria-label="Sections"></nav>
     <div class="appbar__act">
-      <button class="iconbtn" id="langToggle" aria-label="Switch language"><span id="langLabel">EN</span></button>
+      <a class="iconbtn" id="langToggle" href="/en/colm2026.html" hreflang="en" lang="en" rel="alternate" aria-label="View this page in English"><span>EN</span></a>
       <button class="iconbtn" id="themeToggle" aria-label="Toggle dark mode">
         <svg class="ico" id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       </button>
@@ -464,8 +464,15 @@
   };
 
   /* =================== STATE =================== */
+  /* The URL decides the language: each language has its own page and declares
+     itself in <html lang>. Never read it back from storage — someone opening
+     /en/colm2026.html must get English even if they once picked 中文 here, and
+     crawlers have no storage at all. */
+  var pageLang = (document.documentElement.getAttribute("lang")||"en")
+    .toLowerCase().indexOf("zh")===0 ? "zh" : "en";
+
   var state = {
-    lang: (store.get("lang")==="en"?"en":"zh"),
+    lang: pageLang,
     theme: (store.get("theme")==="dark"?"dark":"light"),
     wsQuery:"", faqQuery:"", faqCat:"all"
   };
@@ -995,10 +1002,7 @@
     store.set("theme", state.theme);
   }
   function applyLang(){
-    document.documentElement.setAttribute("lang", state.lang==="zh"?"zh-Hant":"en");
-    $("langLabel").textContent = state.lang==="en"?"中":"EN";
     document.title = state.lang==="zh"?"COLM 2026 — 語言模型研討會":"COLM 2026 — Conference on Language Modeling";
-    store.set("lang", state.lang);
   }
   function renderAll(){
     renderNav(); renderHeroStats(); renderAbout(); renderTimeline(); renderCfp();
@@ -1008,12 +1012,8 @@
 
   /* =================== WIRE =================== */
   $("themeToggle").addEventListener("click", function(){ state.theme=state.theme==="dark"?"light":"dark"; applyTheme(); });
-  $("langToggle").addEventListener("click", function(){
-    state.lang=state.lang==="en"?"zh":"en";
-    applyLang(); renderAll();
-    var open=location.hash.slice(1);
-    if(dialog.open && open) renderDialog(open);
-  });
+  /* No language handler: #langToggle is a plain link to the other language's
+     URL, so switching is a navigation, not a repaint. */
   $("wsSearch").addEventListener("input", function(e){ state.wsQuery=e.target.value.trim(); renderWorkshops(); });
   $("faqSearch").addEventListener("input", function(e){ state.faqQuery=e.target.value.trim(); renderFaq(); });
 

@@ -14,9 +14,10 @@
    body of that section. To add a new block type, add one entry to RENDERERS
    and (optionally) an icon to NAV_ICONS — nothing else needs to change.
 
-   A single render() call repaints EVERY section + the sticky nav + chrome +
-   <title> in the active language, so the zh/en toggle never leaves anything
-   stuck. Hero stat counters animate (count-up) when scrolled into view.
+   A single render() call paints EVERY section + the sticky nav + chrome +
+   <title> in the page's language, which comes from <html lang> — the zh and en
+   versions are separate URLs. Hero stat counters animate (count-up) when
+   scrolled into view.
    ========================================================================= */
 (function () {
   "use strict";
@@ -38,8 +39,15 @@
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } }
 
   /* ---------- global state ---------- */
+  /* The URL decides the language: each language has its own page and declares
+     itself in <html lang>. Never read it back from storage — someone opening
+     /en/ must get English even if they once picked 中文 here, and crawlers have
+     no storage at all. */
+  var pageLang = (document.documentElement.getAttribute("lang") || "en")
+    .toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+
   var state = {
-    lang:  lsGet("lang")  || "en",       // default language: zh
+    lang:  pageLang,
     theme: lsGet("theme") || "light"
   };
 
@@ -270,7 +278,6 @@
   }
 
   function paintChrome() {
-    document.documentElement.setAttribute("lang", state.lang);
     var titleStr = t(META.title);
     var subStr = t(META.subtitle);
     document.title = subStr ? titleStr + " · " + subStr : titleStr;
@@ -439,18 +446,13 @@
   }
 
   /* =======================================================================
-     THEME + LANG
+     THEME
      ===================================================================== */
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", state.theme);
     var icon = $("themeIcon");
     if (icon) icon.textContent = state.theme === "dark" ? "light_mode" : "dark_mode";
     lsSet("theme", state.theme);
-  }
-  function applyLangChrome() {
-    var label = $("langLabel");
-    if (label) label.textContent = state.lang === "en" ? "EN" : "中";
-    lsSet("lang", state.lang);
   }
 
   /* =======================================================================
@@ -462,13 +464,8 @@
       applyTheme();
     });
 
-    $("langToggle").addEventListener("click", function () {
-      state.lang = state.lang === "en" ? "zh" : "en";
-      applyLangChrome();
-      var openSlug = isSlugHash() ? location.hash.slice(1) : null;
-      render();                       // repaint EVERYTHING in the new language
-      if (dialog.open && openSlug) openDialog(openSlug);  // repaint open dialog too
-    });
+    /* No language handler: #langToggle is a plain link to the other language's
+       URL, so switching is a navigation, not a repaint. */
 
     $("dialogClose").addEventListener("click", closeDialog);
     dialog.addEventListener("click", function (e) { if (e.target === dialog) closeDialog(); });
@@ -492,7 +489,6 @@
      ===================================================================== */
   function init() {
     applyTheme();
-    applyLangChrome();
     render();
     wire();
     syncFromHash();
